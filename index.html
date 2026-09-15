@@ -132,7 +132,7 @@
     #gift-reveal-overlay {
       position: fixed;
       inset: 0;
-      z-index: 50;
+      z-index: 60;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -545,6 +545,65 @@
       pointer-events: auto;
     }
 
+    /* Love Letter Regal Parchment Responsive Styling */
+    .love-letter-card {
+      position: relative;
+      isolation: isolate;
+      max-height: calc(100vh - 6.75rem);
+      max-height: calc(100dvh - 6.75rem);
+    }
+
+    @media (min-width: 640px) and (min-height: 501px) {
+      .love-letter-card {
+        max-height: calc(100vh - 8.25rem);
+        max-height: calc(100dvh - 8.25rem);
+      }
+    }
+
+    @media (max-width: 639px) {
+      #gift-reveal-overlay {
+        padding: max(0.875rem, env(safe-area-inset-top)) 0.75rem max(0.875rem, env(safe-area-inset-bottom)) 0.75rem;
+      }
+    }
+
+    @media (max-height: 500px) {
+      #gift-reveal-overlay {
+        padding: 0.375rem 0.75rem !important;
+      }
+      #modal-birthday-greeting {
+        padding-top: 0 !important;
+        padding-bottom: 0.25rem !important;
+      }
+      #letter-card-container {
+        margin-top: 2rem !important;
+        max-height: calc(100vh - 5.25rem) !important;
+        max-height: calc(100dvh - 5.25rem) !important;
+      }
+      #letter-card-container .shrink-0.relative {
+        padding-top: 1rem !important;
+        padding-bottom: 0.375rem !important;
+      }
+      #letter-card-container .shrink-0.relative p.font-serif {
+        padding-top: 0.5rem !important;
+      }
+      #letter-card-container div.shrink-0.rounded-b-3xl {
+        padding-top: 0.375rem !important;
+        padding-bottom: 0.375rem !important;
+      }
+    }
+
+    @media (max-width: 340px) {
+      #btn-edit-letter-text {
+        display: none !important;
+      }
+    }
+
+    #letter-editor-view input,
+    #letter-editor-view textarea {
+      scroll-margin-bottom: 4.5rem;
+      scroll-margin-top: 2rem;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       #gift-box-container.floating {
         animation: none !important;
@@ -657,10 +716,10 @@
     <div id="gift-letter-stage" class="backdrop-dismiss-zone" style="display: none;">
       
       <!-- HERO 23RD BIRTHDAY GREETING BADGE (INSIDE MODAL) -->
-      <div id="modal-birthday-greeting" class="text-center pt-2 pb-3 px-4 select-none">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-pink-500/20 via-purple-500/25 to-amber-500/20 border border-pink-500/40 shadow-[0_0_20px_rgba(236,72,153,0.3)]">
+      <div id="modal-birthday-greeting" class="text-center pt-0.5 sm:pt-1.5 pb-1 sm:pb-2.5 px-1 sm:px-4 select-none">
+        <div class="inline-flex items-center gap-1 sm:gap-2 px-2.5 sm:px-4 py-0.5 sm:py-1 rounded-full bg-gradient-to-r from-pink-500/20 via-purple-500/25 to-amber-500/20 border border-pink-500/40 shadow-[0_0_20px_rgba(236,72,153,0.3)]">
           <span class="text-xs animate-pulse">🎂</span>
-          <span class="text-xs sm:text-sm font-bold text-pink-200 tracking-tight">
+          <span class="text-[10px] sm:text-xs md:text-sm font-bold text-pink-200 tracking-tight whitespace-nowrap">
             Happy 23rd Birthday My Love, Amina! • 17 September 2026
           </span>
           <span class="text-xs animate-pulse">✨</span>
@@ -668,144 +727,151 @@
       </div>
 
       <!-- HAMID'S HEARTFELT LOVE LETTER CARD -->
-      <div id="letter-card-container" class="love-letter-card relative w-full max-w-xl mx-auto my-auto max-h-[85vh] flex flex-col rounded-3xl bg-gradient-to-b from-slate-900/95 via-rose-950/40 to-slate-950/95 border border-rose-500/30 shadow-[0_0_60px_rgba(244,63,94,0.25)] backdrop-blur-2xl overflow-hidden">
+      <div id="letter-card-container" class="love-letter-card relative w-full max-w-xl mx-auto my-auto flex flex-col rounded-3xl bg-gradient-to-b from-slate-900/95 via-rose-950/40 to-slate-950/95 border border-rose-500/30 shadow-[0_0_60px_rgba(244,63,94,0.25)] backdrop-blur-2xl overflow-visible mt-8 sm:mt-9">
         
         <!-- Pinned Header with 3D Wax Seal Badge -->
-        <div class="shrink-0 relative pt-10 pb-4 px-6 border-b border-white/10 bg-slate-950/50 backdrop-blur-md text-center">
+        <div class="shrink-0 relative pt-4 sm:pt-6 pb-1.5 sm:pb-3 px-3 sm:px-6 border-b border-white/10 bg-slate-950/60 backdrop-blur-md text-center rounded-t-3xl">
           
           <!-- 3D Crimson Wax Seal Badge with Ribbon Tails -->
-          <div class="absolute -top-7 left-1/2 -translate-x-1/2 flex items-center justify-center w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-gradient-to-br from-rose-600 via-red-700 to-red-950 shadow-[0_8px_25px_rgba(185,28,28,0.65)] border-2 border-amber-300/60 select-none group">
+          <div class="absolute -top-6 sm:-top-7 left-1/2 -translate-x-1/2 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-rose-600 via-red-700 to-red-950 shadow-[0_8px_25px_rgba(185,28,28,0.65)] border-2 border-amber-300/60 select-none group z-20 pointer-events-none">
             <!-- Ribbon Tails -->
-            <div class="absolute -bottom-3 left-2 w-3.5 h-6 bg-red-950 rounded-sm -rotate-12 -z-10 shadow-md"></div>
-            <div class="absolute -bottom-3 right-2 w-3.5 h-6 bg-red-950 rounded-sm rotate-12 -z-10 shadow-md"></div>
+            <div class="absolute -bottom-2.5 sm:-bottom-3 left-2 w-3 sm:w-3.5 h-5 sm:h-6 bg-red-950 rounded-sm -rotate-12 -z-10 shadow-md"></div>
+            <div class="absolute -bottom-2.5 sm:-bottom-3 right-2 w-3 sm:w-3.5 h-5 sm:h-6 bg-red-950 rounded-sm rotate-12 -z-10 shadow-md"></div>
             <!-- Inner Embossed Ring -->
-            <div class="w-12 h-12 sm:w-13 sm:h-13 rounded-full border border-amber-300/50 flex flex-col items-center justify-center bg-red-800/40 shadow-inner">
-              <span class="font-serif text-sm sm:text-base font-bold text-amber-200 tracking-tight drop-shadow-md">H ❤️ A</span>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-amber-300/50 flex flex-col items-center justify-center bg-red-800/40 shadow-inner">
+              <span class="font-serif text-xs sm:text-base font-bold text-amber-200 tracking-tight drop-shadow-md">H ❤️ A</span>
             </div>
             <!-- 23rd Badge Pill -->
-            <div class="absolute -bottom-2 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-[9px] font-extrabold uppercase tracking-wider shadow-md">
+            <div class="absolute -bottom-2 px-2 sm:px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-[8.5px] sm:text-[9px] font-extrabold uppercase tracking-wider shadow-md border border-amber-200/50">
               23rd
             </div>
           </div>
 
           <!-- Edit Letter & Close Modal Buttons -->
-          <button onclick="toggleLetterEditMode()" id="btn-toggle-letter-edit" class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/10 hover:bg-rose-600/40 text-rose-200 hover:text-white text-[11px] font-semibold flex items-center gap-1 border border-white/15 transition active:scale-90" title="Edit Letter Message">
+          <button onclick="toggleLetterEditMode()" id="btn-toggle-letter-edit" class="absolute top-2 left-2 sm:top-2.5 sm:left-3 h-11 min-h-[44px] min-w-[44px] px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-rose-600/40 active:bg-rose-600/60 text-rose-200 hover:text-white text-[11px] sm:text-xs font-semibold flex items-center justify-center gap-1.5 border border-white/15 transition active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400/50 z-10" title="Edit Letter Message">
             <span>✏️</span>
             <span id="btn-edit-letter-text">Edit Letter</span>
           </button>
-          <button onclick="closeLoveLetter()" aria-label="Close Letter" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center transition active:scale-90">
+          <button onclick="closeLoveLetter()" aria-label="Close Letter" class="absolute top-2 right-2 sm:top-2.5 sm:right-3 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 text-slate-300 hover:text-white flex items-center justify-center transition active:scale-95 shadow-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-rose-400/50 z-10">
             <span class="text-sm font-bold">✕</span>
           </button>
 
           <!-- Bismillah Arabic Calligraphy -->
-          <p class="font-serif text-xs sm:text-sm text-amber-200/80 tracking-widest pt-2">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+          <p class="font-serif text-[11px] sm:text-xs text-amber-200/80 tracking-widest pt-2.5 sm:pt-3.5">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
           
           <!-- Heading -->
-          <h2 class="font-serif text-xl sm:text-2xl font-bold bg-gradient-to-r from-amber-200 via-rose-200 to-pink-200 bg-clip-text text-transparent mt-1">
+          <h2 class="font-serif text-lg sm:text-2xl font-bold bg-gradient-to-r from-amber-200 via-rose-200 to-pink-200 bg-clip-text text-transparent mt-0.5 sm:mt-1 leading-tight tracking-tight">
             To My Beloved Wife Amina
           </h2>
-          <p class="text-[11px] font-mono text-pink-300/90 mt-0.5">On Your 23rd Birthday • 17 September 2026</p>
+          <p class="text-[10px] sm:text-[11px] font-mono text-pink-300/90 mt-0.5">On Your 23rd Birthday • 17 September 2026</p>
         </div>
 
         <!-- Scrollable Letter Body (Touch-safe, Zero Mobile Clipping) -->
-        <div class="flex-1 overflow-y-auto px-5 sm:px-8 py-5 space-y-4 text-sm sm:text-base leading-relaxed text-slate-200/90 custom-scrollbar overscroll-contain">
+        <div class="flex-1 overflow-y-auto px-4 sm:px-8 py-4 sm:py-6 space-y-4 sm:space-y-5 text-sm sm:text-base leading-[1.75] text-slate-200/90 custom-scrollbar overscroll-contain">
           
           <!-- LETTER DISPLAY VIEW -->
-          <div id="letter-display-view" class="space-y-4">
+          <div id="letter-display-view" class="space-y-4 sm:space-y-5">
           
-          <p class="font-serif italic text-base sm:text-lg text-rose-300 font-semibold">
+          <p class="font-serif italic text-base sm:text-xl text-rose-300 font-semibold tracking-wide drop-shadow-sm">
             Meri Pyaari Amina,
           </p>
 
-          <p>
+          <p class="text-[13.5px] sm:text-[15px] leading-[1.75] text-slate-200/95 font-normal tracking-[0.01em]">
             Happy 23rd Birthday, my love. As the sun rises on this blessed 17th of September, mere dil se sabse pehle yahi nikalta hai — shukar hai Allah Ta'ala ka jisne muje meri zindagi ka sabse khoobsurat aur pyara tohfa diya: tu. Bhale hi hum dono alag-alag cities me rehte hain aur hamari Rukhsati abhi baki hai, lekin mera dil har ek pal tere hi paas rehta hai. Tere saath teri 23rd birthday celebrate karna mere liye wo khushi hai jo pehle me sirf apni duaon me maanga karta tha.
           </p>
 
-          <p>
+          <p class="text-[13.5px] sm:text-[15px] leading-[1.75] text-slate-200/95 font-normal tracking-[0.01em]">
             Sach bolu to hamari journey kisi khoobsurat khwab jaisi lagti hai. 14 April 2026 ko jab hamari Baat Pakki hui thi, to dil me ek ajeeb sa sukoon tha ki meri kismat tay ho chuki hai. Phir 27 April 2026 ko hamari Engagement hui, aur teri aankhon ki chamak dekh kar mera dil pehle hi samajh gaya tha ki tu hi meri manzil hai. Lekin 03 July 2026 ka wo blessed Friday... hamara sacred Nikah... jab hum dono ne dil se "Qubool Hai" bola, wo meri zindagi ka sabse muqaddas aur sabse khushiyon bhara din tha. Nikah ke baad hum dono ek dusre ke liye hamesha ke liye halal ho gaye, aur ab bas us din ka intezaar hai jab hamari Rukhsati hogi aur hum hamesha ke liye ek hi ghar me saath honge.
           </p>
 
           <!-- Sacred Nikah Inset Quote -->
-          <div class="p-3.5 rounded-2xl bg-gradient-to-r from-rose-950/50 to-slate-900/60 border-l-4 border-amber-400 shadow-inner">
-            <p class="italic font-serif text-amber-200 text-xs sm:text-sm">
+          <div class="relative p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-amber-500/15 via-rose-950/40 to-amber-500/10 border border-amber-400/40 border-l-4 border-l-amber-400 shadow-[0_4px_20px_rgba(245,158,11,0.15)] backdrop-blur-sm">
+            <div class="flex items-center gap-1.5 text-amber-300 text-[10.5px] sm:text-xs font-semibold uppercase tracking-wider mb-1.5">
+              <span>✨</span>
+              <span>Sacred Nikah Blessing • 03 July 2026</span>
+            </div>
+            <p class="italic font-serif text-amber-200 text-xs sm:text-[14px] leading-relaxed">
               "Qubool Hai — 03 July 2026 ko hamara Nikah hua. Do alag cities me reh kar bhi, hamari do roohein Allah Ta'ala ke hukm se hamesha ke liye ek ho gayi hain."
             </p>
           </div>
 
-          <p>
+          <p class="text-[13.5px] sm:text-[15px] leading-[1.75] text-slate-200/95 font-normal tracking-[0.01em]">
             Alag sheher me hone ki wajah se jab bhi hum mile, wo lamhe meri zindagi ki sabse badi daulat ban gaye. Nikah ke agale hi din, 04 July 2026 ko jab hamara first hand hold hua aur mere haath me tere pyaare pyaare haath aaye... to mera saara stress gayab ho gaya. Aur phir September ke wo yaadgaar din — 05 September 2026 ko jab hum mile, hamara first hug, first kiss aur wo unforgettable first ride jab tu muje pakad kar baithi thi aur teri heartbeat me feel kar sakta tha... aur 10 September 2026 ko jab hamara first good kiss hua jisne meri saansein rok di thi aur mere dil ko hamesha ke liye tera bana diya.
           </p>
 
-          <p>
+          <p class="text-[13.5px] sm:text-[15px] leading-[1.75] text-slate-200/95 font-normal tracking-[0.01em]">
             Kyunki hum door rehte hain, to hamari chats aur phone calls hi hamari sabse badi taaqat hain. 06 July ko jab tune sabse pehle "suno" bol kar chat shuru ki, tab se lekar 31 August tak 57 days me humne 12,980 messages aur ghanton phone calls exchange kiye — bina ek bhi din miss kiye! Aur pata hai, 6,571 of our whispers to humne late night 11 PM se 3 AM ke beech share kiye jab poori duniya so rahi hoti thi aur hum dono phone par baatein karte the. Yahan tak ki jab tu travel kar rahi thi aur hamara 48-hour flight silence hua, tab bhi sabse pehle tera hi message aaya tha ki "Aaj hamari flight hai". Aur meri sweet Reaction Queen — apne 1,669 reactions de kar tune door reh kar bhi mere har lafz me jaan daal di!
           </p>
 
-          <p>
+          <p class="text-[13.5px] sm:text-[15px] leading-[1.75] text-slate-200/95 font-normal tracking-[0.01em]">
             Kyunki me is birthday par tere paas doosri city me nahi aa saka, isliye maine socha koi aam gift dene ke bajaye hamare is long-distance pyaar aur 57 din ki baaton ka ek digital ghar bana du jo hamesha hamare paas rahe:
           </p>
 
           <!-- Gift Chapters List -->
           <div class="space-y-2.5 py-1 text-xs sm:text-sm">
-            <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-start gap-2.5">
-              <span class="text-base shrink-0">✨</span>
-              <span><strong class="text-amber-200">Chapter 1: Our Sacred Milestones & Live Tickers</strong> — Baat Pakki aur Nikah se lekar har second live count ho raha hai, jo ye dikhata hai ki Rukhsati ke kareeb aate-aate mera pyaar tere liye har pal badh raha hai.</span>
+            <div class="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-white/[0.07] to-white/[0.02] hover:from-white/[0.1] hover:to-white/[0.04] border border-white/10 hover:border-amber-400/30 shadow-sm transition-all duration-200 flex items-start gap-3">
+              <div class="w-8 h-8 rounded-xl bg-amber-500/15 border border-amber-400/30 flex items-center justify-center shrink-0 text-base shadow-sm">✨</div>
+              <span class="leading-relaxed text-slate-300/90 text-xs sm:text-[13px]"><strong class="text-amber-200 font-semibold">Chapter 1: Our Sacred Milestones & Live Tickers</strong> — Baat Pakki aur Nikah se lekar har second live count ho raha hai, jo ye dikhata hai ki Rukhsati ke kareeb aate-aate mera pyaar tere liye har pal badh raha hai.</span>
             </div>
-            <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-start gap-2.5">
-              <span class="text-base shrink-0">📸</span>
-              <span><strong class="text-pink-300">Chapter 2: Our Polaroid Moments</strong> — Hamari wo 6 khaas mulakaaton ki yaadein jo waqt me kaid ho gayi hain.</span>
+            <div class="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-white/[0.07] to-white/[0.02] hover:from-white/[0.1] hover:to-white/[0.04] border border-white/10 hover:border-pink-400/30 shadow-sm transition-all duration-200 flex items-start gap-3">
+              <div class="w-8 h-8 rounded-xl bg-pink-500/15 border border-pink-400/30 flex items-center justify-center shrink-0 text-base shadow-sm">📸</div>
+              <span class="leading-relaxed text-slate-300/90 text-xs sm:text-[13px]"><strong class="text-pink-300 font-semibold">Chapter 2: Our Polaroid Moments</strong> — Hamari wo 6 khaas mulakaaton ki yaadein jo waqt me kaid ho gayi hain.</span>
             </div>
-            <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-start gap-2.5">
-              <span class="text-base shrink-0">🌙</span>
-              <span><strong class="text-purple-300">Chapter 3: Our Whispers & Midnight Story</strong> — Hamari late-night calls, chats, 219 sweet words aur hamare pyaar ka rhythm.</span>
+            <div class="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-white/[0.07] to-white/[0.02] hover:from-white/[0.1] hover:to-white/[0.04] border border-white/10 hover:border-purple-400/30 shadow-sm transition-all duration-200 flex items-start gap-3">
+              <div class="w-8 h-8 rounded-xl bg-purple-500/15 border border-purple-400/30 flex items-center justify-center shrink-0 text-base shadow-sm">🌙</div>
+              <span class="leading-relaxed text-slate-300/90 text-xs sm:text-[13px]"><strong class="text-purple-300 font-semibold">Chapter 3: Our Whispers & Midnight Story</strong> — Hamari late-night calls, chats, 219 sweet words aur hamare pyaar ka rhythm.</span>
             </div>
-            <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-start gap-2.5">
-              <span class="text-base shrink-0">💖</span>
-              <span><strong class="text-rose-300">Chapter 4: Our Love Trivia</strong> — Ek mazedaar quiz hamari doori aur baaton ka, jo prove karta hai ki hum 100% soulmates hain.</span>
+            <div class="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-white/[0.07] to-white/[0.02] hover:from-white/[0.1] hover:to-white/[0.04] border border-white/10 hover:border-rose-400/30 shadow-sm transition-all duration-200 flex items-start gap-3">
+              <div class="w-8 h-8 rounded-xl bg-rose-500/15 border border-rose-400/30 flex items-center justify-center shrink-0 text-base shadow-sm">💖</div>
+              <span class="leading-relaxed text-slate-300/90 text-xs sm:text-[13px]"><strong class="text-rose-300 font-semibold">Chapter 4: Our Love Trivia</strong> — Ek mazedaar quiz hamari doori aur baaton ka, jo prove karta hai ki hum 100% soulmates hain.</span>
             </div>
           </div>
 
-          <p>
+          <p class="text-[13.5px] sm:text-[15px] leading-[1.75] text-slate-200/95 font-normal tracking-[0.01em]">
             Tu hamesha mere saath rehna meri jaan, aur koi bhi baat ho ya problem ho to sabse pehle muje batana. Dil ek hi hai mere paas, lekin usme tere liye feelings behisaab hain. Muje bas ab hamari Rukhsati ka intezaar hai jab ye doori hamesha ke liye khatam ho jayegi. Allah Ta'ala se yahi dua hai ki hamari Rukhsati jaldi aur aasaani se ho jaye, Allah Ta'ala tuje hamesha sehat, lambi umar aur dhero khushiyan de, aur hum dono ka saath is dunya me bhi aur Jannah me bhi hamesha bana rahe. Ameen.
           </p>
 
           <!-- Signature Block -->
-          <div class="pt-3 pb-1 text-right">
-            <p id="letter-display-closing" class="text-xs text-rose-300/80 font-medium">Hamesha sirf tera, teri Rukhsati ke intezaar me,</p>
-            <p id="letter-display-signature" class="font-serif italic text-base sm:text-lg font-bold text-amber-200 tracking-wide mt-0.5">Your Husband, Hamid ❤️</p>
+          <div class="pt-3 pb-1 text-right mt-4 border-t border-rose-500/20">
+            <p id="letter-display-closing" class="text-xs sm:text-sm text-rose-300/85 font-medium italic">Hamesha sirf tera, teri Rukhsati ke intezaar me,</p>
+            <p id="letter-display-signature" class="font-serif italic text-base sm:text-xl font-bold bg-gradient-to-r from-amber-300 via-amber-200 to-rose-200 bg-clip-text text-transparent tracking-wide mt-1 drop-shadow-sm">Your Husband, Hamid ❤️</p>
           </div>
           </div>
           <!-- END LETTER DISPLAY VIEW -->
 
           <!-- LETTER EDIT MODE VIEW -->
-          <div id="letter-editor-view" class="space-y-4 hidden">
-            <div class="p-3 rounded-2xl bg-rose-950/40 border border-rose-500/30 text-xs text-rose-200">
-              💡 <strong>Edit Your Love Letter:</strong> Write your personal thoughts, memories, or feelings. Changes will update on Amina's screen!
+          <div id="letter-editor-view" class="space-y-4 hidden pb-2">
+            <div class="p-3 sm:p-3.5 rounded-2xl bg-rose-950/50 border border-rose-500/30 text-xs sm:text-[13px] text-rose-200 flex items-start gap-2 leading-relaxed">
+              <span class="text-sm shrink-0">💡</span>
+              <span><strong>Edit Your Love Letter:</strong> Write your personal thoughts, memories, or feelings. Changes will update on Amina's screen!</span>
             </div>
-            <div class="space-y-1">
+            <div class="space-y-1.5">
               <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Greeting</label>
-              <input type="text" id="letter-edit-greeting-input" class="w-full px-3 py-2 rounded-xl bg-slate-950/80 border border-rose-500/40 text-rose-300 font-serif font-semibold text-sm focus:outline-none focus:border-rose-400" value="Meri Pyaari Amina,">
+              <input type="text" id="letter-edit-greeting-input" class="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl bg-slate-950/80 border border-rose-500/40 text-rose-300 font-serif font-semibold text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-rose-400/50 focus:border-rose-400 transition" value="Meri Pyaari Amina,">
             </div>
-            <div class="space-y-1">
+            <div class="space-y-1.5">
               <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Letter Body (Paragraphs)</label>
-              <textarea id="letter-edit-body-input" rows="12" class="w-full px-3 py-2.5 rounded-xl bg-slate-950/80 border border-white/20 text-slate-200 text-xs sm:text-sm font-sans leading-relaxed focus:outline-none focus:border-rose-400 custom-scrollbar" placeholder="Write your letter here... Separate paragraphs with blank lines."></textarea>
+              <textarea id="letter-edit-body-input" rows="7" class="w-full min-h-[140px] px-3.5 py-2.5 rounded-xl bg-slate-950/80 border border-white/20 text-slate-200 text-base sm:text-sm font-sans leading-relaxed focus:outline-none focus:ring-2 focus:ring-rose-400/50 focus:border-rose-400 custom-scrollbar transition" placeholder="Write your letter here... Separate paragraphs with blank lines."></textarea>
             </div>
-            <div class="space-y-1">
+            <div class="space-y-1.5">
               <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Closing Line</label>
-              <input type="text" id="letter-edit-closing-input" class="w-full px-3 py-2 rounded-xl bg-slate-950/80 border border-rose-500/40 text-rose-300 text-xs focus:outline-none focus:border-rose-400" value="Hamesha sirf tera, teri Rukhsati ke intezaar me,">
+              <input type="text" id="letter-edit-closing-input" class="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl bg-slate-950/80 border border-rose-500/40 text-rose-300 text-base sm:text-xs focus:outline-none focus:ring-2 focus:ring-rose-400/50 focus:border-rose-400 transition" value="Hamesha sirf tera, teri Rukhsati ke intezaar me,">
             </div>
-            <div class="space-y-1">
+            <div class="space-y-1.5">
               <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Signature</label>
-              <input type="text" id="letter-edit-signature-input" class="w-full px-3 py-2 rounded-xl bg-slate-950/80 border border-amber-400/40 text-amber-200 font-serif font-bold text-sm focus:outline-none focus:border-amber-300" value="Your Husband, Hamid ❤️">
+              <input type="text" id="letter-edit-signature-input" class="w-full min-h-[44px] px-3.5 py-2.5 rounded-xl bg-slate-950/80 border border-amber-400/40 text-amber-200 font-serif font-bold text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-300 transition" value="Your Husband, Hamid ❤️">
             </div>
             <div class="flex items-center gap-2 pt-2">
-              <button type="button" onclick="saveCustomLetter()" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 via-pink-600 to-amber-500 text-white font-bold text-xs shadow-md hover:brightness-110 active:scale-95 transition">
-                💾 Save Letter
+              <button type="button" onclick="saveCustomLetter()" class="flex-1 min-h-[44px] py-2.5 px-4 rounded-xl bg-gradient-to-r from-rose-500 via-pink-600 to-amber-500 text-white font-bold text-xs sm:text-sm shadow-md hover:brightness-110 active:scale-95 transition flex items-center justify-center gap-1.5">
+                <span>💾</span>
+                <span>Save Letter</span>
               </button>
-              <button type="button" onclick="resetLetterToDefault()" class="px-3 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-300 text-xs font-semibold border border-white/15 active:scale-95 transition" title="Restore original Hinglish letter">
-                ↺ Reset
+              <button type="button" onclick="resetLetterToDefault()" class="min-h-[44px] px-3.5 sm:px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-300 text-xs font-semibold border border-white/15 active:scale-95 transition flex items-center justify-center gap-1" title="Restore original Hinglish letter">
+                <span>↺</span>
+                <span>Reset</span>
               </button>
-              <button type="button" onclick="toggleLetterEditMode(false)" class="px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 text-xs active:scale-95 transition">
-                ✕ Cancel
+              <button type="button" onclick="toggleLetterEditMode(false)" class="min-h-[44px] px-3.5 sm:px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 text-xs active:scale-95 transition flex items-center justify-center">
+                <span>Cancel</span>
               </button>
             </div>
           </div>
@@ -813,12 +879,12 @@
         </div>
 
         <!-- Pinned Footer & CTA Button Bar -->
-        <div class="shrink-0 p-4 sm:p-5 border-t border-white/10 bg-slate-950/80 backdrop-blur-md flex items-center justify-between gap-3">
-          <button onclick="replayGiftUnwrap()" class="px-3 sm:px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-semibold text-slate-300 border border-white/10 active:scale-95 transition flex items-center gap-1.5 shrink-0">
+        <div class="shrink-0 px-3 sm:px-4 py-2 sm:py-3.5 border-t border-white/10 bg-slate-950/80 backdrop-blur-md flex items-center justify-between gap-3 rounded-b-3xl">
+          <button onclick="replayGiftUnwrap()" class="min-h-[44px] px-3.5 sm:px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-semibold text-slate-300 border border-white/10 active:scale-95 transition flex items-center gap-1.5 shrink-0 focus:outline-none focus:ring-2 focus:ring-rose-400/40">
             <span>🎁</span>
             <span class="hidden sm:inline">Replay</span> Reveal
           </button>
-          <button onclick="closeLoveLetter(); if(typeof window.goToChapter==='function') window.goToChapter('milestones');" id="btn-unfold-memories" class="flex-1 px-5 sm:px-7 py-3 rounded-2xl bg-gradient-to-r from-rose-500 via-pink-600 to-amber-500 text-white font-bold text-xs sm:text-sm shadow-[0_4px_25px_rgba(244,63,94,0.4)] hover:shadow-[0_6px_35px_rgba(244,63,94,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+          <button onclick="closeLoveLetter(); if(typeof window.goToChapter==='function') window.goToChapter('milestones');" id="btn-unfold-memories" class="flex-1 min-h-[44px] px-4 sm:px-7 py-2.5 sm:py-3 rounded-2xl bg-gradient-to-r from-rose-500 via-pink-600 to-amber-500 text-white font-bold text-xs sm:text-sm shadow-[0_4px_25px_rgba(244,63,94,0.4)] hover:shadow-[0_6px_35px_rgba(244,63,94,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-rose-400/50">
             <span>Enter Our Memories</span>
             <span class="text-base">✨</span>
           </button>
@@ -3370,6 +3436,23 @@
           const pTexts = Array.from(pEls).map(p => p.textContent.trim()).filter(Boolean);
           document.getElementById('letter-edit-body-input').value = pTexts.join('\n\n');
         }
+
+        // Scroll to top of editor view
+        const scrollBox = editorView.closest('.overflow-y-auto');
+        if (scrollBox) scrollBox.scrollTop = 0;
+
+        // Smooth focus scroll handling for virtual keyboard on mobile
+        const editorInputs = editorView.querySelectorAll('input, textarea');
+        editorInputs.forEach(input => {
+          if (!input.dataset.scrollBound) {
+            input.dataset.scrollBound = 'true';
+            input.addEventListener('focus', () => {
+              setTimeout(() => {
+                input.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              }, 250);
+            });
+          }
+        });
       } else {
         if (displayView) displayView.classList.remove('hidden');
         if (editorView) editorView.classList.add('hidden');
@@ -3440,6 +3523,7 @@
           if (paras.length > existingPs.length && sigBlock) {
             for (let i = existingPs.length; i < paras.length; i++) {
               const newP = document.createElement('p');
+              newP.className = 'text-[13.5px] sm:text-[15px] leading-[1.75] text-slate-200/95 font-normal tracking-[0.01em]';
               newP.textContent = paras[i];
               displayView.insertBefore(newP, sigBlock);
             }
