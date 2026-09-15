@@ -1,0 +1,16 @@
+# Python caches and test artifacts
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Large raw archive files
+*.zip
+
+# Agent scratch and internal notes
+.agents/
+*.bak
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+.DS_Store
