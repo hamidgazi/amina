@@ -3234,12 +3234,44 @@
       if (!file) return;
       const reader = new FileReader();
       reader.onload = function(evt) {
-        currentMemoryCustomImage = evt.target.result;
-        const prevImg = document.getElementById('memory-modal-preview-img');
-        if (prevImg) {
-          prevImg.onerror = null;
-          prevImg.src = currentMemoryCustomImage;
-        }
+        const rawData = evt.target.result;
+        // Automatic lightweight canvas optimization for fast loading on Amina's phone
+        const img = new Image();
+        img.onload = function() {
+          const maxDim = 1200;
+          let w = img.width;
+          let h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) {
+              h = Math.round((h * maxDim) / w);
+              w = maxDim;
+            } else {
+              w = Math.round((w * maxDim) / h);
+              h = maxDim;
+            }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          currentMemoryCustomImage = canvas.toDataURL('image/jpeg', 0.85);
+
+          const prevImg = document.getElementById('memory-modal-preview-img');
+          if (prevImg) {
+            prevImg.onerror = null;
+            prevImg.src = currentMemoryCustomImage;
+          }
+        };
+        img.onerror = function() {
+          currentMemoryCustomImage = rawData;
+          const prevImg = document.getElementById('memory-modal-preview-img');
+          if (prevImg) {
+            prevImg.onerror = null;
+            prevImg.src = currentMemoryCustomImage;
+          }
+        };
+        img.src = rawData;
       };
       reader.readAsDataURL(file);
     }
@@ -3496,7 +3528,7 @@
 
         status.textContent = '2/3 Packaging updated photos and love letter into webpage...';
 
-        let fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+        let fullHtml = prepareHtmlForExport();
         const encodedContent = btoa(unescape(encodeURIComponent(fullHtml)));
 
         status.textContent = '3/3 Pushing updated files to GitHub main branch...';
@@ -3537,8 +3569,42 @@
       }
     }
 
+    function prepareHtmlForExport() {
+      let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+      // 1. Bake activePolaroidsList directly into POLAROIDS_LIST in HTML source
+      try {
+        if (activePolaroidsList && activePolaroidsList.length > 0) {
+          const listJson = JSON.stringify(activePolaroidsList, null, 2);
+          html = html.replace(/const POLAROIDS_LIST = \[([\s\S]*?)\];/, 'const POLAROIDS_LIST = ' + listJson + ';');
+        }
+      } catch (e) {
+        console.warn('Could not serialize POLAROIDS_LIST:', e);
+      }
+
+      // 2. Bake custom love letter directly into letter inputs & display paragraphs
+      try {
+        const savedLetter = getStoredLetter();
+        if (savedLetter) {
+          if (savedLetter.greeting) {
+            html = html.replace(/value="Meri Pyaari Amina,"/g, 'value="' + escapeHtmlText(savedLetter.greeting) + '"');
+          }
+          if (savedLetter.closing) {
+            html = html.replace(/value="Hamesha sirf tera, teri Rukhsati ke intezaar me,"/g, 'value="' + escapeHtmlText(savedLetter.closing) + '"');
+          }
+          if (savedLetter.signature) {
+            html = html.replace(/value="Your Husband, Hamid ❤️"/g, 'value="' + escapeHtmlText(savedLetter.signature) + '"');
+          }
+        }
+      } catch (e) {
+        console.warn('Could not serialize custom letter:', e);
+      }
+
+      return html;
+    }
+
     function downloadUpdatedGiftHtml() {
-      const fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const fullHtml = prepareHtmlForExport();
       const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
