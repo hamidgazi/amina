@@ -688,7 +688,11 @@
             </div>
           </div>
 
-          <!-- Close Modal (✕) Button -->
+          <!-- Edit Letter & Close Modal Buttons -->
+          <button onclick="toggleLetterEditMode()" id="btn-toggle-letter-edit" class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/10 hover:bg-rose-600/40 text-rose-200 hover:text-white text-[11px] font-semibold flex items-center gap-1 border border-white/15 transition active:scale-90" title="Edit Letter Message">
+            <span>✏️</span>
+            <span id="btn-edit-letter-text">Edit Letter</span>
+          </button>
           <button onclick="closeLoveLetter()" aria-label="Close Letter" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center transition active:scale-90">
             <span class="text-sm font-bold">✕</span>
           </button>
@@ -705,6 +709,9 @@
 
         <!-- Scrollable Letter Body (Touch-safe, Zero Mobile Clipping) -->
         <div class="flex-1 overflow-y-auto px-5 sm:px-8 py-5 space-y-4 text-sm sm:text-base leading-relaxed text-slate-200/90 custom-scrollbar overscroll-contain">
+          
+          <!-- LETTER DISPLAY VIEW -->
+          <div id="letter-display-view" class="space-y-4">
           
           <p class="font-serif italic text-base sm:text-lg text-rose-300 font-semibold">
             Meri Pyaari Amina,
@@ -763,9 +770,46 @@
 
           <!-- Signature Block -->
           <div class="pt-3 pb-1 text-right">
-            <p class="text-xs text-rose-300/80 font-medium">Hamesha sirf tera, teri Rukhsati ke intezaar me,</p>
-            <p class="font-serif italic text-base sm:text-lg font-bold text-amber-200 tracking-wide mt-0.5">Your Husband, Hamid ❤️</p>
+            <p id="letter-display-closing" class="text-xs text-rose-300/80 font-medium">Hamesha sirf tera, teri Rukhsati ke intezaar me,</p>
+            <p id="letter-display-signature" class="font-serif italic text-base sm:text-lg font-bold text-amber-200 tracking-wide mt-0.5">Your Husband, Hamid ❤️</p>
           </div>
+          </div>
+          <!-- END LETTER DISPLAY VIEW -->
+
+          <!-- LETTER EDIT MODE VIEW -->
+          <div id="letter-editor-view" class="space-y-4 hidden">
+            <div class="p-3 rounded-2xl bg-rose-950/40 border border-rose-500/30 text-xs text-rose-200">
+              💡 <strong>Edit Your Love Letter:</strong> Write your personal thoughts, memories, or feelings. Changes will update on Amina's screen!
+            </div>
+            <div class="space-y-1">
+              <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Greeting</label>
+              <input type="text" id="letter-edit-greeting-input" class="w-full px-3 py-2 rounded-xl bg-slate-950/80 border border-rose-500/40 text-rose-300 font-serif font-semibold text-sm focus:outline-none focus:border-rose-400" value="Meri Pyaari Amina,">
+            </div>
+            <div class="space-y-1">
+              <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Letter Body (Paragraphs)</label>
+              <textarea id="letter-edit-body-input" rows="12" class="w-full px-3 py-2.5 rounded-xl bg-slate-950/80 border border-white/20 text-slate-200 text-xs sm:text-sm font-sans leading-relaxed focus:outline-none focus:border-rose-400 custom-scrollbar" placeholder="Write your letter here... Separate paragraphs with blank lines."></textarea>
+            </div>
+            <div class="space-y-1">
+              <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Closing Line</label>
+              <input type="text" id="letter-edit-closing-input" class="w-full px-3 py-2 rounded-xl bg-slate-950/80 border border-rose-500/40 text-rose-300 text-xs focus:outline-none focus:border-rose-400" value="Hamesha sirf tera, teri Rukhsati ke intezaar me,">
+            </div>
+            <div class="space-y-1">
+              <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Signature</label>
+              <input type="text" id="letter-edit-signature-input" class="w-full px-3 py-2 rounded-xl bg-slate-950/80 border border-amber-400/40 text-amber-200 font-serif font-bold text-sm focus:outline-none focus:border-amber-300" value="Your Husband, Hamid ❤️">
+            </div>
+            <div class="flex items-center gap-2 pt-2">
+              <button type="button" onclick="saveCustomLetter()" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 via-pink-600 to-amber-500 text-white font-bold text-xs shadow-md hover:brightness-110 active:scale-95 transition">
+                💾 Save Letter
+              </button>
+              <button type="button" onclick="resetLetterToDefault()" class="px-3 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-300 text-xs font-semibold border border-white/15 active:scale-95 transition" title="Restore original Hinglish letter">
+                ↺ Reset
+              </button>
+              <button type="button" onclick="toggleLetterEditMode(false)" class="px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 text-xs active:scale-95 transition">
+                ✕ Cancel
+              </button>
+            </div>
+          </div>
+          <!-- END LETTER EDIT MODE VIEW -->
         </div>
 
         <!-- Pinned Footer & CTA Button Bar -->
@@ -802,6 +846,10 @@
       </div>
 
       <div class="flex items-center gap-1 sm:gap-1.5 shrink-0">
+        <button onclick="openOnlineSyncModal()" id="header-sync-btn" class="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 border border-cyan-400/40 text-cyan-200 text-[11px] font-semibold transition active:scale-95 shadow-sm shadow-cyan-500/20" title="Sync / Publish Changes Online">
+          <span>🌐</span>
+          <span class="hidden sm:inline font-medium">Sync Online</span>
+        </button>
         <button onclick="openLoveLetter()" id="header-love-letter-btn" class="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-gradient-to-r from-rose-500/20 to-pink-500/20 hover:from-rose-500/30 hover:to-pink-500/30 border border-rose-500/40 text-rose-200 text-[11px] font-semibold transition active:scale-95 shadow-sm shadow-rose-500/20" title="Re-read Hamid's Love Letter">
           <span>💌</span>
           <span class="hidden sm:inline font-medium">Love Letter</span>
@@ -1433,14 +1481,23 @@
       
       <!-- Polaroid Photo Memories Showcase -->
       <div class="glass-card p-5 space-y-4 border-pink-500/30" id="polaroids-gallery-container">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-wrap items-center justify-between gap-2">
           <div>
             <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
               <span>📸</span> Our Treasured Polaroid Moments
             </h3>
             <p class="text-[11px] text-pink-300/80">Frozen in time, etched in our hearts forever</p>
           </div>
-          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-pink-500/20 text-pink-300 border border-pink-500/30">6 Moments</span>
+          <div class="flex items-center gap-2">
+            <button onclick="openAddMemoryModal()" class="px-3 py-1 rounded-full bg-gradient-to-r from-pink-500/30 to-rose-500/30 hover:from-pink-500/45 hover:to-rose-500/45 border border-pink-500/50 text-pink-200 text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-sm shadow-pink-500/20" title="Add New Photo / Moment">
+              <span>➕</span>
+              <span>Add Memory</span>
+            </button>
+            <button onclick="resetPolaroidsToDefault()" class="text-[10px] text-slate-400 hover:text-rose-300 underline transition" title="Restore default moments">
+              Reset
+            </button>
+            <span id="polaroids-count-badge" class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-pink-500/20 text-pink-300 border border-pink-500/30">6 Moments</span>
+          </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-2" id="polaroids-grid-container">
@@ -3010,6 +3067,656 @@
       }
     }
 
+  
+    // =============================================================
+    // DYNAMIC PHOTO UPLOAD & POLAROID MEMORY MANAGEMENT
+    // =============================================================
+    let activePolaroidsList = [];
+    let currentEditingMemoryId = null;
+    let currentMemoryCustomImage = null;
+
+    function loadSavedPolaroids() {
+      try {
+        const saved = localStorage.getItem('amina_custom_polaroids');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed;
+          }
+        }
+      } catch (e) {
+        console.warn('Storage read error:', e);
+      }
+      return JSON.parse(JSON.stringify(POLAROIDS_LIST));
+    }
+
+    function saveActivePolaroids() {
+      try {
+        localStorage.setItem('amina_custom_polaroids', JSON.stringify(activePolaroidsList));
+      } catch (e) {
+        console.warn('Storage save error:', e);
+      }
+    }
+
+    // Override renderPolaroidsGallery to support activePolaroidsList & editing
+    function renderPolaroidsGallery() {
+      const pCont = document.getElementById('polaroids-grid-container');
+      if (!pCont) return;
+      pCont.innerHTML = '';
+
+      if (!activePolaroidsList || activePolaroidsList.length === 0) {
+        activePolaroidsList = loadSavedPolaroids();
+      }
+
+      const badge = document.getElementById('polaroids-count-badge');
+      if (badge) {
+        badge.textContent = `${activePolaroidsList.length} Moments`;
+      }
+
+      activePolaroidsList.forEach((p, idx) => {
+        const card = document.createElement('div');
+        card.className = 'polaroid-card bg-slate-900/90 border border-white/15 p-3 sm:p-4 rounded-2xl shadow-xl space-y-3 relative group';
+        card.style.transform = `rotate(${p.rotation || '0deg'})`;
+
+        const cardId = p.id !== undefined ? p.id : (idx + 1);
+        const imgSrc = p.custom_image_url || p.photo_file || 'images/photo1.jpg';
+        const isCustom = Boolean(p.custom_image_url);
+
+        const editBtn = document.createElement('button');
+        editBtn.className = 'absolute top-2 right-2 w-7 h-7 rounded-full bg-slate-900/80 hover:bg-pink-600 text-slate-200 hover:text-white text-xs border border-white/20 flex items-center justify-center transition shadow-lg z-10 active:scale-90';
+        editBtn.setAttribute('title', 'Edit Photo & Story');
+        editBtn.innerHTML = '✏️';
+        editBtn.onclick = function(e) {
+          e.stopPropagation();
+          openEditMemoryModal(cardId);
+        };
+        card.appendChild(editBtn);
+
+        const imgWrap = document.createElement('div');
+        imgWrap.className = 'relative w-full rounded-xl overflow-hidden bg-slate-950 border border-white/10 aspect-[4/3] flex items-center justify-center';
+
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        img.alt = p.title || 'Memory Moment';
+        img.className = 'w-full h-full object-cover rounded-xl';
+        if (!isCustom) {
+          img.onerror = function() {
+            handleImageError(this, cardId, p.title || '', p.date_str || '');
+          };
+        }
+        imgWrap.appendChild(img);
+        card.appendChild(imgWrap);
+
+        const infoWrap = document.createElement('div');
+        infoWrap.className = 'space-y-1';
+        infoWrap.innerHTML = `
+          <div class="flex items-center justify-between gap-1">
+            <span class="text-xs font-bold text-white truncate">${escapeHtmlText(p.title || 'Special Moment')}</span>
+            <span class="text-[10px] font-mono text-amber-300 shrink-0">${escapeHtmlText(p.date_str || '')}</span>
+          </div>
+          <p class="text-[11px] text-slate-300 italic font-serif leading-snug">
+            "${escapeHtmlText(p.caption || '')}"
+          </p>
+        `;
+        card.appendChild(infoWrap);
+
+        pCont.appendChild(card);
+      });
+    }
+
+    function openEditMemoryModal(id) {
+      currentEditingMemoryId = id;
+      const item = activePolaroidsList.find(p => p.id === id) || activePolaroidsList.find((p, idx) => (idx + 1) === id);
+      if (!item) return;
+
+      const heading = document.getElementById('memory-modal-heading');
+      if (heading) heading.innerHTML = '<span>📸</span> Edit Memory';
+      
+      document.getElementById('memory-modal-title-input').value = item.title || '';
+      document.getElementById('memory-modal-date-input').value = item.date_str || '';
+      document.getElementById('memory-modal-caption-input').value = item.caption || '';
+      
+      currentMemoryCustomImage = item.custom_image_url || null;
+      const prevImg = document.getElementById('memory-modal-preview-img');
+      if (prevImg) {
+        prevImg.src = currentMemoryCustomImage || item.photo_file || 'images/photo1.jpg';
+        if (!currentMemoryCustomImage) {
+          prevImg.onerror = function() {
+            handleImageError(this, item.id || 1, item.title || '', item.date_str || '');
+          };
+        } else {
+          prevImg.onerror = null;
+        }
+      }
+
+      const delBtn = document.getElementById('memory-modal-delete-btn');
+      if (delBtn) delBtn.style.display = 'block';
+
+      const modal = document.getElementById('memory-editor-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function openAddMemoryModal() {
+      currentEditingMemoryId = null;
+      currentMemoryCustomImage = null;
+
+      const heading = document.getElementById('memory-modal-heading');
+      if (heading) heading.innerHTML = '<span>➕</span> Add New Memory';
+
+      document.getElementById('memory-modal-title-input').value = '';
+      document.getElementById('memory-modal-date-input').value = '';
+      document.getElementById('memory-modal-caption-input').value = '';
+      
+      const prevImg = document.getElementById('memory-modal-preview-img');
+      if (prevImg) {
+        prevImg.src = 'images/photo1.jpg';
+        prevImg.onerror = function() {
+          handleImageError(this, 1, 'Our Memory', 'Special Moment');
+        };
+      }
+
+      const delBtn = document.getElementById('memory-modal-delete-btn');
+      if (delBtn) delBtn.style.display = 'none';
+
+      const modal = document.getElementById('memory-editor-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeMemoryEditorModal() {
+      const modal = document.getElementById('memory-editor-modal');
+      if (modal) modal.style.display = 'none';
+      currentEditingMemoryId = null;
+      currentMemoryCustomImage = null;
+    }
+
+    function handleMemoryFileSelection(e) {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        currentMemoryCustomImage = evt.target.result;
+        const prevImg = document.getElementById('memory-modal-preview-img');
+        if (prevImg) {
+          prevImg.onerror = null;
+          prevImg.src = currentMemoryCustomImage;
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearMemoryCustomPhoto() {
+      currentMemoryCustomImage = null;
+      const prevImg = document.getElementById('memory-modal-preview-img');
+      if (prevImg) {
+        prevImg.src = 'images/photo1.jpg';
+        prevImg.onerror = function() {
+          handleImageError(this, 1, 'Our Memory', 'Artwork');
+        };
+      }
+    }
+
+    function saveMemoryEditorModal() {
+      const title = document.getElementById('memory-modal-title-input').value.trim() || 'Our Special Moment';
+      const dateStr = document.getElementById('memory-modal-date-input').value.trim() || 'Blessed Moment';
+      const caption = document.getElementById('memory-modal-caption-input').value.trim() || 'A cherished memory etched in our hearts.';
+
+      if (currentEditingMemoryId !== null) {
+        let item = activePolaroidsList.find(p => p.id === currentEditingMemoryId) || activePolaroidsList.find((p, idx) => (idx + 1) === currentEditingMemoryId);
+        if (item) {
+          item.title = title;
+          item.date_str = dateStr;
+          item.caption = caption;
+          if (currentMemoryCustomImage) {
+            item.custom_image_url = currentMemoryCustomImage;
+          }
+        }
+      } else {
+        const newId = Date.now();
+        const tilts = ['-2.5deg', '2.0deg', '-1.8deg', '3.0deg', '-2.2deg', '2.5deg'];
+        const rot = tilts[activePolaroidsList.length % tilts.length];
+        activePolaroidsList.push({
+          id: newId,
+          photo_file: 'images/photo1.jpg',
+          custom_image_url: currentMemoryCustomImage,
+          title: title,
+          date_str: dateStr,
+          caption: caption,
+          rotation: rot
+        });
+      }
+
+      saveActivePolaroids();
+      renderPolaroidsGallery();
+      closeMemoryEditorModal();
+      showGiftToast('✨ Memory updated successfully!', '📸');
+    }
+
+    function deleteCurrentMemoryCard() {
+      if (currentEditingMemoryId === null) return;
+      if (!confirm('Are you sure you want to delete this memory card?')) return;
+
+      activePolaroidsList = activePolaroidsList.filter(p => p.id !== currentEditingMemoryId && (activePolaroidsList.indexOf(p) + 1) !== currentEditingMemoryId);
+      saveActivePolaroids();
+      renderPolaroidsGallery();
+      closeMemoryEditorModal();
+      showGiftToast('🗑️ Memory removed', '✨');
+    }
+
+    function resetPolaroidsToDefault() {
+      if (!confirm('Restore the default 6 memory moments?')) return;
+      localStorage.removeItem('amina_custom_polaroids');
+      activePolaroidsList = JSON.parse(JSON.stringify(POLAROIDS_LIST));
+      renderPolaroidsGallery();
+      showGiftToast('↺ Restored default moments', '✨');
+    }
+
+    // =============================================================
+    // LOVE LETTER EDITOR & PERSISTENCE
+    // =============================================================
+    let isLetterEditMode = false;
+
+    function toggleLetterEditMode(forceState) {
+      isLetterEditMode = (forceState !== undefined) ? forceState : !isLetterEditMode;
+      const displayView = document.getElementById('letter-display-view');
+      const editorView = document.getElementById('letter-editor-view');
+      const btnText = document.getElementById('btn-edit-letter-text');
+
+      if (isLetterEditMode) {
+        if (displayView) displayView.classList.add('hidden');
+        if (editorView) editorView.classList.remove('hidden');
+        if (btnText) btnText.textContent = 'View';
+
+        const saved = getStoredLetter();
+        if (saved) {
+          document.getElementById('letter-edit-greeting-input').value = saved.greeting || 'Meri Pyaari Amina,';
+          document.getElementById('letter-edit-body-input').value = saved.body || '';
+          document.getElementById('letter-edit-closing-input').value = saved.closing || 'Hamesha sirf tera, teri Rukhsati ke intezaar me,';
+          document.getElementById('letter-edit-signature-input').value = saved.signature || 'Your Husband, Hamid ❤️';
+        } else {
+          // Extract text from current paragraphs in DOM
+          const pEls = displayView.querySelectorAll('p:not(.font-serif):not(#letter-display-closing):not(#letter-display-signature)');
+          const pTexts = Array.from(pEls).map(p => p.textContent.trim()).filter(Boolean);
+          document.getElementById('letter-edit-body-input').value = pTexts.join('\n\n');
+        }
+      } else {
+        if (displayView) displayView.classList.remove('hidden');
+        if (editorView) editorView.classList.add('hidden');
+        if (btnText) btnText.textContent = 'Edit Letter';
+      }
+    }
+
+    function getStoredLetter() {
+      try {
+        const saved = localStorage.getItem('amina_custom_letter');
+        if (saved) return JSON.parse(saved);
+      } catch (e) {
+        console.warn('Storage letter read error:', e);
+      }
+      return null;
+    }
+
+    function saveCustomLetter() {
+      const greeting = document.getElementById('letter-edit-greeting-input').value.trim() || 'Meri Pyaari Amina,';
+      const body = document.getElementById('letter-edit-body-input').value.trim();
+      const closing = document.getElementById('letter-edit-closing-input').value.trim() || 'Hamesha sirf tera, teri Rukhsati ke intezaar me,';
+      const signature = document.getElementById('letter-edit-signature-input').value.trim() || 'Your Husband, Hamid ❤️';
+
+      const letterObj = { greeting, body, closing, signature };
+      try {
+        localStorage.setItem('amina_custom_letter', JSON.stringify(letterObj));
+      } catch (e) {
+        console.warn('Storage letter save error:', e);
+      }
+
+      applyLetterToDisplay(letterObj);
+      toggleLetterEditMode(false);
+      showGiftToast('💌 Love letter saved!', '❤️');
+    }
+
+    function applyLetterToDisplay(letterObj) {
+      if (!letterObj) return;
+      const displayView = document.getElementById('letter-display-view');
+      if (!displayView) return;
+
+      const greetingEl = displayView.querySelector('p.font-serif.italic');
+      if (greetingEl && letterObj.greeting) {
+        greetingEl.textContent = letterObj.greeting;
+      }
+
+      const closingEl = document.getElementById('letter-display-closing');
+      if (closingEl && letterObj.closing) {
+        closingEl.textContent = letterObj.closing;
+      }
+
+      const sigEl = document.getElementById('letter-display-signature');
+      if (sigEl && letterObj.signature) {
+        sigEl.textContent = letterObj.signature;
+      }
+
+      if (letterObj.body) {
+        const paras = letterObj.body.split(/\n\s*\n/).map(s => s.trim()).filter(Boolean);
+        if (paras.length > 0) {
+          const existingPs = displayView.querySelectorAll('p:not(.font-serif):not(#letter-display-closing):not(#letter-display-signature)');
+          existingPs.forEach((p, idx) => {
+            if (idx < paras.length) {
+              p.textContent = paras[idx];
+            } else {
+              p.remove();
+            }
+          });
+          const sigBlock = displayView.querySelector('.pt-3.pb-1.text-right');
+          if (paras.length > existingPs.length && sigBlock) {
+            for (let i = existingPs.length; i < paras.length; i++) {
+              const newP = document.createElement('p');
+              newP.textContent = paras[i];
+              displayView.insertBefore(newP, sigBlock);
+            }
+          }
+        }
+      }
+    }
+
+    function resetLetterToDefault() {
+      if (!confirm('Restore original Hinglish love letter?')) return;
+      localStorage.removeItem('amina_custom_letter');
+      location.reload();
+    }
+
+    function loadSavedLetter() {
+      const saved = getStoredLetter();
+      if (saved) {
+        applyLetterToDisplay(saved);
+      }
+    }
+
+    // =============================================================
+    // ONLINE GIT SYNC & GITHUB PAGES INTEGRATION
+    // =============================================================
+    const GITHUB_REPO = 'hamidgazi/amina';
+    function getGitHubToken() {
+      return localStorage.getItem('hamid_github_token') || '';
+    }
+
+    function openOnlineSyncModal() {
+      const modal = document.getElementById('online-sync-modal');
+      if (modal) modal.style.display = 'flex';
+      const status = document.getElementById('publish-status-msg');
+      if (status) status.textContent = '';
+      const tokenInput = document.getElementById('github-token-input');
+      if (tokenInput) tokenInput.value = getGitHubToken();
+    }
+
+    function closeOnlineSyncModal() {
+      const modal = document.getElementById('online-sync-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function saveGitHubToken() {
+      const tokenInput = document.getElementById('github-token-input');
+      if (tokenInput && tokenInput.value.trim()) {
+        localStorage.setItem('hamid_github_token', tokenInput.value.trim());
+        showGiftToast('🔐 GitHub token saved locally!', '🔑');
+      }
+    }
+
+    async function publishChangesToGitHubOnline() {
+      const btn = document.getElementById('btn-publish-online');
+      const btnText = document.getElementById('btn-publish-online-text');
+      const status = document.getElementById('publish-status-msg');
+
+      const tokenInput = document.getElementById('github-token-input');
+      const token = (tokenInput && tokenInput.value.trim()) || getGitHubToken();
+      if (!token) {
+        status.className = 'text-[11px] text-center text-amber-300 font-mono';
+        status.textContent = 'Please enter your GitHub Access Token above, or use sync_to_github.bat!';
+        if (tokenInput) tokenInput.focus();
+        return;
+      }
+      localStorage.setItem('hamid_github_token', token);
+
+      try {
+        btn.disabled = true;
+        btnText.textContent = 'Syncing...';
+        status.className = 'text-[11px] text-center text-cyan-300 font-mono';
+        status.textContent = '1/3 Connecting to GitHub repository hamidgazi/amina...';
+
+        const getRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/index.html`, {
+          headers: {
+            'Authorization': `token ${token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (!getRes.ok) {
+          throw new Error(`Failed to fetch repo status (${getRes.status})`);
+        }
+
+        const getData = await getRes.json();
+        const currentSha = getData.sha;
+
+        status.textContent = '2/3 Packaging updated photos and love letter into webpage...';
+
+        let fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+        const encodedContent = btoa(unescape(encodeURIComponent(fullHtml)));
+
+        status.textContent = '3/3 Pushing updated files to GitHub main branch...';
+
+        const putRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/index.html`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${token}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: 'Update birthday memories and love letter from Hamid',
+            content: encodedContent,
+            sha: currentSha
+          })
+        });
+
+        if (!putRes.ok) {
+          const errData = await putRes.json();
+          throw new Error(errData.message || `Push failed with HTTP ${putRes.status}`);
+        }
+
+        status.className = 'text-[11px] text-center text-emerald-400 font-mono font-bold';
+        status.textContent = '🎉 Successfully published! Live in ~30 seconds on GitHub Pages!';
+        btnText.textContent = 'Published Online!';
+        showGiftToast('🚀 Website published to GitHub Pages!', '🌐');
+        if (typeof window.triggerCelebrationConfetti === 'function') {
+          window.triggerCelebrationConfetti({ stage: 'all' });
+        }
+      } catch (err) {
+        console.error('Publish error:', err);
+        status.className = 'text-[11px] text-center text-rose-400 font-mono';
+        status.textContent = `Error: ${err.message}. You can also use sync_to_github.bat locally!`;
+        btnText.textContent = 'Retry Publish';
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    function downloadUpdatedGiftHtml() {
+      const fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'index.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showGiftToast('📥 Downloaded updated index.html', '💾');
+    }
+
+    function showGiftToast(msg, icon) {
+      const toast = document.getElementById('gift-toast-notification');
+      if (!toast) return;
+      document.getElementById('gift-toast-icon').textContent = icon || '✨';
+      document.getElementById('gift-toast-text').textContent = msg;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translate(-50%, -10px)';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translate(-50%, 0)';
+      }, 3000);
+    }
+
+    function escapeHtmlText(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, function(m) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[m];
+      });
+    }
+
+    // Call loadSavedLetter on load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSavedLetter();
+    });
+
   </script>
+
+  <!-- ============================================================= -->
+  <!-- MEMORY PHOTO & DETAILS EDITOR MODAL                           -->
+  <!-- ============================================================= -->
+  <div id="memory-editor-modal" class="fixed inset-0 z-[9999] bg-slate-950/85 backdrop-blur-md items-center justify-center p-4 overflow-y-auto" style="display: none;">
+    <div class="relative w-full max-w-lg mx-auto my-auto rounded-3xl bg-gradient-to-b from-slate-900/95 via-rose-950/30 to-slate-950/95 border border-pink-500/30 shadow-2xl p-5 sm:p-6 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-white/10">
+        <h3 id="memory-modal-heading" class="font-bold text-base sm:text-lg text-white flex items-center gap-2">
+          <span>📸</span> Edit Memory
+        </h3>
+        <button onclick="closeMemoryEditorModal()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center text-xs font-bold transition">
+          ✕
+        </button>
+      </div>
+
+      <!-- Image Preview & Upload -->
+      <div class="space-y-2">
+        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Photo / Image</label>
+        <div class="relative aspect-[4/3] rounded-2xl bg-slate-950 border border-white/15 overflow-hidden flex items-center justify-center">
+          <img id="memory-modal-preview-img" src="images/photo1.jpg" alt="Preview" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent flex items-end justify-center p-3">
+            <button type="button" onclick="document.getElementById('memory-modal-file-input').click()" class="px-3.5 py-1.5 rounded-full bg-pink-600/90 hover:bg-pink-500 text-white text-xs font-semibold shadow-lg backdrop-blur-sm transition active:scale-95 flex items-center gap-1.5">
+              <span>📁</span> Choose Photo from Phone/PC
+            </button>
+          </div>
+        </div>
+        <input type="file" id="memory-modal-file-input" accept="image/*" class="hidden" onchange="handleMemoryFileSelection(event)">
+        <div class="flex items-center justify-between text-[10px] text-slate-400">
+          <span>Supports any person or event photo (JPG, PNG, WebP)</span>
+          <button type="button" onclick="clearMemoryCustomPhoto()" class="text-rose-400 hover:text-rose-300 underline">Use Default Artwork</button>
+        </div>
+      </div>
+
+      <!-- Title Input -->
+      <div class="space-y-1">
+        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Title / Event / Person</label>
+        <input type="text" id="memory-modal-title-input" class="w-full px-3 py-2 rounded-xl bg-slate-950/80 border border-white/20 text-white text-xs sm:text-sm font-semibold focus:outline-none focus:border-pink-500" placeholder="e.g. Baat Pakki, Amina's Smile, First Ride...">
+      </div>
+
+      <!-- Date Input -->
+      <div class="space-y-1">
+        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Date / Time / Subtitle</label>
+        <input type="text" id="memory-modal-date-input" class="w-full px-3 py-2 rounded-xl bg-slate-950/80 border border-white/20 text-amber-300 text-xs sm:text-sm font-mono focus:outline-none focus:border-pink-500" placeholder="e.g. 14 April 2026, or Evening Walk...">
+      </div>
+
+      <!-- Description / Caption -->
+      <div class="space-y-1">
+        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider">Story / Caption</label>
+        <textarea id="memory-modal-caption-input" rows="3" class="w-full px-3 py-2 rounded-xl bg-slate-950/80 border border-white/20 text-slate-200 text-xs sm:text-sm italic focus:outline-none focus:border-pink-500 leading-relaxed" placeholder="Write your feelings, memory, or thoughts about this moment..."></textarea>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 pt-2 border-t border-white/10">
+        <button type="button" onclick="saveMemoryEditorModal()" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-pink-500 via-rose-600 to-amber-500 text-white font-bold text-xs shadow-md hover:brightness-110 active:scale-95 transition">
+          💾 Save Memory
+        </button>
+        <button type="button" id="memory-modal-delete-btn" onclick="deleteCurrentMemoryCard()" class="px-3.5 py-2.5 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-300 text-xs font-semibold border border-red-500/30 active:scale-95 transition" title="Delete this memory card">
+          🗑️ Delete
+        </button>
+        <button type="button" onclick="closeMemoryEditorModal()" class="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-slate-300 text-xs font-semibold border border-white/10 active:scale-95 transition">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- ONLINE SYNC & GITHUB PUBLISH MODAL                            -->
+  <!-- ============================================================= -->
+  <div id="online-sync-modal" class="fixed inset-0 z-[9999] bg-slate-950/85 backdrop-blur-md items-center justify-center p-4 overflow-y-auto" style="display: none;">
+    <div class="relative w-full max-w-lg mx-auto my-auto rounded-3xl bg-gradient-to-b from-slate-900/95 via-blue-950/30 to-slate-950/95 border border-cyan-500/30 shadow-2xl p-5 sm:p-6 space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-white/10">
+        <h3 class="font-bold text-base sm:text-lg text-white flex items-center gap-2">
+          <span>🌐</span> Sync Online & Publish to Web
+        </h3>
+        <button onclick="closeOnlineSyncModal()" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center text-xs font-bold transition">
+          ✕
+        </button>
+      </div>
+
+      <div class="p-3.5 rounded-2xl bg-cyan-950/30 border border-cyan-500/30 space-y-1.5">
+        <div class="flex items-center justify-between text-xs">
+          <span class="font-bold text-cyan-300">Live Website URL:</span>
+          <span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-[10px] font-mono">GitHub Pages Active</span>
+        </div>
+        <a href="https://hamidgazi.github.io/amina/" target="_blank" class="text-xs sm:text-sm text-cyan-200 hover:text-white underline font-mono break-all block">
+          https://hamidgazi.github.io/amina/
+        </a>
+      </div>
+
+      <!-- Secure Local GitHub Token Input -->
+      <div class="space-y-1.5">
+        <label class="text-[11px] font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between">
+          <span>GitHub Access Token</span>
+          <span class="text-[10px] text-emerald-400 font-normal">Stored only in your browser</span>
+        </label>
+        <div class="flex gap-2">
+          <input type="password" id="github-token-input" class="flex-1 px-3 py-2 rounded-xl bg-slate-950/80 border border-white/20 text-xs font-mono text-white focus:outline-none focus:border-cyan-400" placeholder="Enter Personal Access Token...">
+          <button type="button" onclick="saveGitHubToken()" class="px-3 py-2 rounded-xl bg-cyan-600/30 hover:bg-cyan-600/50 border border-cyan-400/50 text-cyan-200 text-xs font-semibold active:scale-95 transition">
+            Save
+          </button>
+        </div>
+      </div>
+
+      <div class="space-y-3 pt-1">
+        <!-- One-Click Push Button -->
+        <button type="button" id="btn-publish-online" onclick="publishChangesToGitHubOnline()" class="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-600 to-cyan-500 text-white font-bold text-xs sm:text-sm shadow-lg hover:brightness-110 active:scale-95 transition flex items-center justify-center gap-2">
+          <span>🚀</span>
+          <span id="btn-publish-online-text">Publish Changes to GitHub Pages (Live Online)</span>
+        </button>
+        <p id="publish-status-msg" class="text-[11px] text-center text-slate-400 font-mono"></p>
+
+        <!-- Download HTML Button -->
+        <button type="button" onclick="downloadUpdatedGiftHtml()" class="w-full py-2.5 px-4 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-slate-200 text-xs font-semibold flex items-center justify-center gap-2 transition active:scale-95">
+          <span>📥</span>
+          <span>Download Updated index.html (Local Backup)</span>
+        </button>
+      </div>
+
+      <!-- Quick Tips Box -->
+      <div class="p-3 rounded-xl bg-white/5 border border-white/10 text-[11px] text-slate-300 space-y-1">
+        <p class="font-semibold text-amber-300">💡 How updates work for Amina:</p>
+        <p>• Clicking <strong>Publish Changes</strong> commits your updated photos and love letter directly to your GitHub repository (<span class="font-mono text-cyan-300">hamidgazi/amina</span>).</p>
+        <p>• GitHub Pages rebuilds automatically in ~30 seconds, so Amina will see all your changes right on her phone!</p>
+        <p>• You can also double-click <span class="font-mono text-amber-200">sync_to_github.bat</span> on your desktop anytime.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST NOTIFICATION -->
+  <div id="gift-toast-notification" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[10000] px-4 py-2.5 rounded-full bg-slate-900/95 border border-pink-500/50 shadow-2xl text-white text-xs font-semibold backdrop-blur-md pointer-events-none opacity-0 transition-all duration-300 flex items-center gap-2">
+    <span id="gift-toast-icon">✨</span>
+    <span id="gift-toast-text">Success</span>
+  </div>
+
 </body>
 </html>
