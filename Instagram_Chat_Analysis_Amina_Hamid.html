@@ -611,6 +611,17 @@
       .gift-ambient-aura {
         animation: none !important;
       }
+      .ambient-petal,
+      .ambient-sparkle {
+        display: none !important;
+      }
+      .heartbeat-pulse {
+        animation: none !important;
+        transform: translateY(-50%) !important;
+      }
+      .pulse-glow {
+        animation: none !important;
+      }
     }
   
     /* Polaroid Showcase Styles */
@@ -630,12 +641,97 @@
       transform: translateX(4px);
     }
 
+    /* Two Cities Connection & Heartbeat Pulse */
+    @keyframes heartbeat {
+      0%, 100% { transform: translateY(-50%) scale(1); }
+      14% { transform: translateY(-50%) scale(1.22); }
+      28% { transform: translateY(-50%) scale(1); }
+      42% { transform: translateY(-50%) scale(1.18); }
+      70% { transform: translateY(-50%) scale(1); }
+    }
+    .heartbeat-pulse {
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.6; filter: drop-shadow(0 0 6px rgba(236, 72, 153, 0.6)); }
+      50% { opacity: 1; filter: drop-shadow(0 0 16px rgba(236, 72, 153, 0.95)); }
+    }
+    .pulse-glow {
+      animation: pulseGlow 2.5s ease-in-out infinite;
+    }
+
+    /* Ambient Rose Petals & Golden Embers Floating Animation */
+    @keyframes floatPetalFall {
+      0% {
+        transform: translate3d(0, -50px, 0) rotate(0deg) rotateX(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.85;
+      }
+      85% {
+        opacity: 0.85;
+      }
+      100% {
+        transform: translate3d(var(--drift-x, 80px), 108vh, 0) rotate(var(--rot-end, 360deg)) rotateX(180deg);
+        opacity: 0;
+      }
+    }
+    @keyframes driftSparkle {
+      0% {
+        transform: translate3d(0, 0, 0) scale(0.6);
+        opacity: 0;
+      }
+      25% {
+        opacity: 0.9;
+        transform: translate3d(15px, -30px, 0) scale(1.1);
+      }
+      50% {
+        opacity: 0.4;
+        transform: translate3d(-15px, -60px, 0) scale(0.8);
+      }
+      75% {
+        opacity: 1;
+        transform: translate3d(20px, -90px, 0) scale(1.2);
+      }
+      100% {
+        transform: translate3d(0, -120px, 0) scale(0.4);
+        opacity: 0;
+      }
+    }
+    .ambient-petal {
+      position: absolute;
+      top: 0;
+      opacity: 0;
+      will-change: transform, opacity;
+      animation: floatPetalFall var(--petal-duration, 12s) linear infinite;
+      animation-delay: var(--petal-delay, 0s);
+      animation-fill-mode: both;
+      pointer-events: none;
+      user-select: none;
+    }
+    .ambient-sparkle {
+      position: absolute;
+      opacity: 0;
+      will-change: transform, opacity;
+      animation: driftSparkle var(--sparkle-duration, 6s) ease-in-out infinite;
+      animation-delay: var(--sparkle-delay, 0s);
+      animation-fill-mode: both;
+      pointer-events: none;
+      user-select: none;
+    }
+
   </style>
 </head>
 <body class="antialiased select-none">
 
   <!-- CONFETTI CANVAS -->
   <canvas id="confetti-canvas"></canvas>
+
+  <!-- AMBIENT FLOATING ROSE PETALS & GOLDEN SPARKLES EFFECT -->
+  <canvas id="rose-petals-canvas" class="fixed inset-0 pointer-events-none z-30 w-full h-full" style="display: none;"></canvas>
+  <div id="ambient-rose-petals" class="fixed inset-0 pointer-events-none z-30 overflow-hidden" aria-hidden="true"></div>
 
   <!-- ============================================================= -->
   <!-- FULL-SCREEN 3D GIFT REVEAL & LOVE LETTER MODAL OVERLAY       -->
@@ -1037,6 +1133,98 @@
               ⏸
             </button>
           </div>
+        </div>
+      </div>
+
+      <!-- ============================================================= -->
+      <!-- "TWO CITIES, ONE HEART" PRE-RUKHSATI CONNECTION CARD          -->
+      <!-- ============================================================= -->
+      <div id="two-cities-card" class="glass-card p-5 sm:p-6 space-y-5 border border-pink-500/30 shadow-2xl relative overflow-hidden bg-gradient-to-b from-slate-900/95 via-slate-900/90 to-slate-950/95">
+        <!-- Ambient Decorative Glow -->
+        <div class="absolute -top-16 -right-16 w-36 h-36 bg-pink-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-16 -left-16 w-36 h-36 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Header Badge & Title -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pb-2 border-b border-white/10">
+          <div class="space-y-1">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-500/15 border border-pink-400/30 text-pink-300 text-[11px] font-bold tracking-wider uppercase">
+              <span>💫</span> Two Cities, One Heart • Pre-Rukhsati Bond
+            </div>
+            <h3 class="text-base sm:text-lg font-black text-white tracking-tight flex items-center gap-2">
+              <span>Surat ⟷ Bhiwandi</span>
+              <span class="text-[11px] font-mono font-medium text-amber-300 px-2 py-0.5 rounded-full bg-amber-400/15 border border-amber-400/25">Do Shehar, Ek Jaan</span>
+            </h3>
+          </div>
+          <div class="shrink-0 flex items-center gap-1.5 self-start sm:self-auto">
+            <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-[10px] font-bold tracking-wide flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+              Nikah: 03 July 2026
+            </span>
+          </div>
+        </div>
+
+        <!-- Interactive Connection Line with Animated Pulsating Heart -->
+        <div class="py-2 sm:py-3 px-1">
+          <div class="flex items-center justify-between gap-2 sm:gap-4 relative">
+            <!-- Hamid Node (Surat) -->
+            <div class="flex flex-col items-center text-center space-y-1 z-10 shrink-0">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-400 p-0.5 shadow-lg shadow-blue-500/30 flex items-center justify-center">
+                <div class="w-full h-full bg-slate-950 rounded-[14px] flex flex-col items-center justify-center">
+                  <span class="text-xl">🏙️</span>
+                </div>
+              </div>
+              <span class="text-xs font-bold text-white tracking-wide">Surat</span>
+              <span class="text-[10px] font-medium text-blue-300">Hamid (Husband)</span>
+            </div>
+
+            <!-- Glowing Connection Track & Heartbeat Center -->
+            <div class="relative flex-1 flex flex-col items-center justify-center px-1 sm:px-3 z-10">
+              <div class="relative w-full flex items-center justify-center">
+                <div class="w-full h-1 sm:h-1.5 bg-gradient-to-r from-blue-500 via-pink-500 to-rose-400 rounded-full shadow-[0_0_14px_rgba(236,72,153,0.85)] relative overflow-hidden pulse-glow">
+                  <div class="absolute inset-0 bg-white/30 animate-pulse"></div>
+                </div>
+                <!-- Pulsating Heartbeat Button (min 44x44px touch target) -->
+                <button onclick="celebrateCityHeartbeat()" aria-label="Celebrate our heartbeat connection" class="absolute top-1/2 -translate-y-1/2 w-11 h-11 min-w-[44px] min-h-[44px] px-2.5 py-1 rounded-full bg-slate-900 border border-pink-400/60 shadow-xl shadow-pink-500/40 heartbeat-pulse flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95 transition select-none">
+                  <span class="text-base">❤️</span>
+                </button>
+              </div>
+              <span class="block text-[10px] font-mono text-slate-400 mt-8 tracking-wider text-center">~280 km • United in Soul</span>
+            </div>
+
+            <!-- Amina Node (Bhiwandi) -->
+            <div class="flex flex-col items-center text-center space-y-1 z-10 shrink-0">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-tr from-pink-500 via-rose-500 to-amber-400 p-0.5 shadow-lg shadow-pink-500/30 flex items-center justify-center">
+                <div class="w-full h-full bg-slate-950 rounded-[14px] flex flex-col items-center justify-center">
+                  <span class="text-xl">🌸</span>
+                </div>
+              </div>
+              <span class="text-xs font-bold text-white tracking-wide">Bhiwandi</span>
+              <span class="text-[10px] font-medium text-pink-300">Amina (Wife)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Sacred Nikah Elapsed Counter -->
+        <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-center sm:text-left">
+          <div class="space-y-0.5">
+            <div class="text-[10px] uppercase font-bold tracking-wider text-slate-400 flex items-center justify-center sm:justify-start gap-1">
+              <span>💍</span> United Under Allah Ta'ala Since 03 July 2026
+            </div>
+            <div class="text-xs font-semibold text-pink-200">Sacred Halal Bond Awaiting Rukhsati</div>
+          </div>
+          <div id="two-cities-live-timer" class="font-mono text-xs sm:text-sm font-bold px-3 py-1.5 rounded-xl bg-pink-500/15 border border-pink-500/30 text-pink-300 text-center tracking-tight shadow-inner shrink-0">
+            ⏱️ Calculating...
+          </div>
+        </div>
+
+        <!-- Romantic Hinglish Blessing & Du'a Text -->
+        <div class="p-4 rounded-2xl bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-amber-500/10 border border-pink-500/20 text-xs sm:text-[13px] text-slate-200 leading-relaxed font-serif space-y-2">
+          <p>
+            "Fasle chahe Surat aur Bhiwandi ke darmiyan kitne bhi kilometers ke hon, Allah Ta'ala ne 03 July 2026 ko hamare dilon aur rooh ko hamesha ke liye ek kar diya hai. Bhale hi hum abhi alag sheharon me rehte hain aur hamari Rukhsati ka intezaar hai, lekin hamari har ek saans aur har ek dua ek dusre ke naam hai."
+          </p>
+          <p class="text-[11px] sm:text-xs text-amber-200/90 italic font-sans">
+            "Dua hai Allah Ta'ala hamare is pak rishte me be-inteha barkat, mohabbat aur sukoon ata farmaye, aur jaldi hi hume ek hi aashiyane me hamesha ke liye saath rehne ki khushiyan naseeb kare. Ameen! 🤲✨"
+          </p>
         </div>
       </div>
 
@@ -2015,7 +2203,9 @@
       window.triggerCelebrationConfetti = function(options) {
         const opts = options || {};
         triggerCelebrationHaptic();
-        playCelebrationChime();
+        if (!opts.silent) {
+          playCelebrationChime();
+        }
 
         // Stage 1: Explosive Center Burst (Radial eruption from gift box)
         spawnWave({
@@ -2080,12 +2270,14 @@
 
     // Synthesized Celebration Chime (Web Audio API - Zero External Dependencies)
     let _celebrationAudioCtx = null;
+    let _audioMuted = true; // Strictly peaceful & silent constraint: zero background audio or chimes can be triggered
     function playCelebrationChime() {
       try {
         const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
         if (!AudioCtxClass) return;
         if (!_celebrationAudioCtx) _celebrationAudioCtx = new AudioCtxClass();
         if (_celebrationAudioCtx.state === 'suspended') _celebrationAudioCtx.resume();
+        if (_audioMuted) return; // Zero audio or chimes can be triggered under any circumstance
 
         const notes = [523.25, 659.25, 783.99, 987.77, 1046.50, 1318.51];
         const now = _celebrationAudioCtx.currentTime;
@@ -2809,7 +3001,7 @@
         milestone_id: 'family-group',
         title: 'Our Families & Loved Ones Together',
         date_str: 'A Blessed Gathering',
-        caption: 'Hamari khushiyon me sabka muskuraana aur hamare rishte par sabki duayein. Allah Ta\'ala hamare is pyare rishte ko hamesha aisi hi barkat de.',
+        caption: "Hamari khushiyon me sabka muskuraana aur hamare rishte par sabki duayein. Allah Ta'ala hamare is pyare rishte ko hamesha aisi hi barkat de.",
         rotation: '-2.0deg'
       }
     ];
@@ -2936,6 +3128,20 @@
           tickerEl.textContent = `⏱️ ${formatted}`;
         }
       });
+
+      // Two Cities Live Timer (Nikah: 2026-07-03T00:00:00+05:30)
+      const twoCitiesTimerEl = document.getElementById('two-cities-live-timer');
+      if (twoCitiesTimerEl) {
+        const nikahTarget = new Date('2026-07-03T00:00:00+05:30');
+        let diffMs = now.getTime() - nikahTarget.getTime();
+        if (diffMs < 0) diffMs = Math.abs(diffMs);
+        const totalSec = Math.floor(diffMs / 1000);
+        const d = Math.floor(totalSec / 86400);
+        const h = Math.floor((totalSec % 86400) / 3600);
+        const m = Math.floor((totalSec % 3600) / 60);
+        const s = totalSec % 60;
+        twoCitiesTimerEl.textContent = `⏱️ ${d}d ${h}h ${m}m ${s}s together`;
+      }
 
       // Birthday ticker
       const bdayEl = document.getElementById('ticker-birthday');
@@ -3139,7 +3345,7 @@
     // =============================================================
     // DYNAMIC PHOTO UPLOAD & POLAROID MEMORY MANAGEMENT
     // =============================================================
-    let activePolaroidsList = [];
+    let activePolaroidsList = null;
     let currentEditingMemoryId = null;
     let currentMemoryCustomImage = null;
 
@@ -3172,7 +3378,7 @@
       if (!pCont) return;
       pCont.innerHTML = '';
 
-      if (!activePolaroidsList || activePolaroidsList.length === 0) {
+      if (activePolaroidsList === null) {
         activePolaroidsList = loadSavedPolaroids();
       }
 
@@ -3398,6 +3604,7 @@
 
       saveActivePolaroids();
       renderPolaroidsGallery();
+      syncLightboxIfOpen();
       closeMemoryEditorModal();
       showGiftToast('✨ Memory updated successfully!', '📸');
     }
@@ -3409,6 +3616,7 @@
       activePolaroidsList = activePolaroidsList.filter(p => p.id !== currentEditingMemoryId && (activePolaroidsList.indexOf(p) + 1) !== currentEditingMemoryId);
       saveActivePolaroids();
       renderPolaroidsGallery();
+      syncLightboxIfOpen();
       closeMemoryEditorModal();
       showGiftToast('🗑️ Memory removed', '✨');
     }
@@ -3418,6 +3626,7 @@
       localStorage.removeItem('amina_custom_polaroids');
       activePolaroidsList = JSON.parse(JSON.stringify(POLAROIDS_LIST));
       renderPolaroidsGallery();
+      syncLightboxIfOpen();
       showGiftToast('↺ Restored default moments', '✨');
     }
 
@@ -3444,7 +3653,7 @@
             document.getElementById('letter-edit-qubool-tag-input').value = saved.quboolTag || 'Sacred Nikah Blessing • 03 July 2026';
           }
           if (document.getElementById('letter-edit-qubool-text-input')) {
-            document.getElementById('letter-edit-qubool-text-input').value = saved.quboolText || '"Qubool Hai — 03 July 2026 ko hamara Nikah hua. Do alag cities me reh kar bhi, hamari do roohein Allah Ta\'ala ke hukm se hamesha ke liye ek ho gayi hain."';
+            document.getElementById('letter-edit-qubool-text-input').value = saved.quboolText || `"Qubool Hai — 03 July 2026 ko hamara Nikah hua. Do alag cities me reh kar bhi, hamari do roohein Allah Ta'ala ke hukm se hamesha ke liye ek ho gayi hain."`;
           }
           document.getElementById('letter-edit-body-input').value = saved.body || '';
           document.getElementById('letter-edit-closing-input').value = saved.closing || 'Hamesha sirf tera, teri Rukhsati ke intezaar me,';
@@ -3500,7 +3709,7 @@
     function saveCustomLetter() {
       const greeting = document.getElementById('letter-edit-greeting-input').value.trim() || 'Meri Pyaari Amina,';
       const quboolTag = document.getElementById('letter-edit-qubool-tag-input') ? document.getElementById('letter-edit-qubool-tag-input').value.trim() : 'Sacred Nikah Blessing • 03 July 2026';
-      const quboolText = document.getElementById('letter-edit-qubool-text-input') ? document.getElementById('letter-edit-qubool-text-input').value.trim() : '"Qubool Hai — 03 July 2026 ko hamara Nikah hua. Do alag cities me reh kar bhi, hamari do roohein Allah Ta\'ala ke hukm se hamesha ke liye ek ho gayi hain."';
+      const quboolText = document.getElementById('letter-edit-qubool-text-input') ? document.getElementById('letter-edit-qubool-text-input').value.trim() : `"Qubool Hai — 03 July 2026 ko hamara Nikah hua. Do alag cities me reh kar bhi, hamari do roohein Allah Ta'ala ke hukm se hamesha ke liye ek ho gayi hain."`;
       const body = document.getElementById('letter-edit-body-input').value.trim();
       const closing = document.getElementById('letter-edit-closing-input').value.trim() || 'Hamesha sirf tera, teri Rukhsati ke intezaar me,';
       const signature = document.getElementById('letter-edit-signature-input').value.trim() || 'Your Husband, Hamid ❤️';
@@ -3748,38 +3957,316 @@
 
     
     // =============================================================
-    // FULL-SCREEN PHOTO LIGHTBOX VIEWER
+    // TWO CITIES & CELEBRATION HEARTBEAT
     // =============================================================
-    function openPhotoLightbox(id) {
-      const item = activePolaroidsList.find(p => p.id === id) || activePolaroidsList.find((p, idx) => (idx + 1) === id);
-      if (!item) return;
+    function celebrateCityHeartbeat() {
+      if (typeof triggerCelebrationConfetti === 'function') {
+        triggerCelebrationConfetti({ stage: 'burst', count: 35, silent: true });
+      }
+      showGiftToast('Surat & Bhiwandi • Two Cities, One Heart ❤️', '💖');
+    }
 
+    // =============================================================
+    // GENTLE FLOATING ROSE PETALS & SPARKLE AMBIANCE
+    // =============================================================
+    let ambientPetalsActive = true;
+
+    function initAmbientPetals() {
+      const container = document.getElementById('ambient-rose-petals');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const petalSvgs = [
+        '<svg viewBox="0 0 24 24" class="w-full h-full fill-rose-400/75 drop-shadow-[0_2px_8px_rgba(244,63,94,0.35)]"><path d="M12 2C8.5 2 5 6 5 11c0 6 7 11 7 11s7-5 7-11c0-5-3.5-9-7-9z"/></svg>',
+        '<svg viewBox="0 0 24 24" class="w-full h-full fill-pink-300/80 drop-shadow-[0_2px_8px_rgba(244,114,182,0.35)]"><path d="M12 3C9 3 6 6.5 6 11c0 5 6 10 6 10s6-5 6-10c0-4.5-3-8-6-8z"/></svg>',
+        '<svg viewBox="0 0 24 24" class="w-full h-full fill-rose-300/70 drop-shadow-[0_2px_6px_rgba(253,164,175,0.3)]"><path d="M12 2.5C9.5 2.5 7 6 7 10.5c0 5.5 5 10.5 5 10.5s5-5 5-10.5c0-4.5-2.5-8-5-8z"/></svg>'
+      ];
+
+      // 16 gentle rose petals
+      for (let i = 0; i < 16; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'ambient-petal';
+        const left = (Math.random() * 96).toFixed(1);
+        const size = Math.floor(Math.random() * 10) + 14;
+        const duration = (Math.random() * 6 + 10).toFixed(1);
+        const delay = (Math.random() * 12).toFixed(1);
+        const driftX = (Math.random() * 100 - 50).toFixed(0) + 'px';
+        const rotEnd = (Math.random() * 360 + 180).toFixed(0) + 'deg';
+
+        petal.style.left = `${left}%`;
+        petal.style.width = `${size}px`;
+        petal.style.height = `${size}px`;
+        petal.style.setProperty('--petal-duration', `${duration}s`);
+        petal.style.setProperty('--petal-delay', `${delay}s`);
+        petal.style.setProperty('--drift-x', driftX);
+        petal.style.setProperty('--rot-end', rotEnd);
+        petal.innerHTML = petalSvgs[i % petalSvgs.length];
+        container.appendChild(petal);
+      }
+
+      // 10 subtle golden ember sparkles
+      for (let j = 0; j < 10; j++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'ambient-sparkle rounded-full bg-amber-300/85 shadow-[0_0_8px_#fcd34d]';
+        const left = (Math.random() * 95).toFixed(1);
+        const top = (Math.random() * 85 + 5).toFixed(1);
+        const size = Math.floor(Math.random() * 3) + 3;
+        const duration = (Math.random() * 3 + 4).toFixed(1);
+        const delay = (Math.random() * 6).toFixed(1);
+
+        sparkle.style.left = `${left}%`;
+        sparkle.style.top = `${top}%`;
+        sparkle.style.width = `${size}px`;
+        sparkle.style.height = `${size}px`;
+        sparkle.style.setProperty('--sparkle-duration', `${duration}s`);
+        sparkle.style.setProperty('--sparkle-delay', `${delay}s`);
+        container.appendChild(sparkle);
+      }
+    }
+
+    function toggleAmbientPetals() {
+      ambientPetalsActive = !ambientPetalsActive;
+      const container = document.getElementById('ambient-rose-petals');
+      const icon = document.getElementById('petals-toggle-icon');
+      const btn = document.getElementById('ambient-petals-toggle');
+
+      if (!ambientPetalsActive) {
+        if (container) container.style.display = 'none';
+        if (btn) {
+          btn.classList.add('opacity-45');
+          btn.setAttribute('title', 'Turn on floating rose petals (Currently off)');
+          btn.setAttribute('aria-pressed', 'false');
+          btn.setAttribute('aria-label', 'Turn on floating rose petals and sparkles');
+        }
+        if (icon) icon.style.filter = 'grayscale(100%)';
+        showGiftToast('Ambient rose petals paused', '🌸');
+      } else {
+        if (container) container.style.display = 'block';
+        if (btn) {
+          btn.classList.remove('opacity-45');
+          btn.setAttribute('title', 'Toggle floating rose petals and sparkles');
+          btn.setAttribute('aria-pressed', 'true');
+          btn.setAttribute('aria-label', 'Toggle floating rose petals and sparkles');
+        }
+        if (icon) icon.style.filter = 'none';
+        showGiftToast('Ambient rose petals active', '🌸');
+      }
+    }
+
+    // =============================================================
+    // FULL-SCREEN PHOTO LIGHTBOX VIEWER (WITH PREV / NEXT & COUNTER)
+    // =============================================================
+    let currentLightboxIndex = 0;
+
+    function getActivePhotosList() {
+      if (typeof activePolaroidsList !== 'undefined' && activePolaroidsList !== null) {
+        return activePolaroidsList;
+      }
+      if (typeof loadSavedPolaroids === 'function') {
+        const loaded = loadSavedPolaroids();
+        if (loaded) {
+          activePolaroidsList = loaded;
+          return activePolaroidsList;
+        }
+      }
+      if (typeof POLAROIDS_LIST !== 'undefined' && POLAROIDS_LIST) {
+        return POLAROIDS_LIST;
+      }
+      return [];
+    }
+
+    function updateLightboxDisplay() {
+      const list = getActivePhotosList();
+      if (!list || list.length === 0) return;
+
+      if (currentLightboxIndex < 0) currentLightboxIndex = list.length - 1;
+      if (currentLightboxIndex >= list.length) currentLightboxIndex = 0;
+
+      const item = list[currentLightboxIndex];
       const modal = document.getElementById('photo-lightbox-modal');
       const img = document.getElementById('lightbox-modal-img');
       const title = document.getElementById('lightbox-modal-title');
       const date = document.getElementById('lightbox-modal-date');
       const caption = document.getElementById('lightbox-modal-caption');
+      const counterText = document.getElementById('lightbox-counter-text');
+      const indexPill = document.getElementById('lightbox-index-pill');
 
-      if (!modal || !img) return;
+      if (!modal || !img || !item) return;
 
-      const imgSrc = item.custom_image_url || item.photo_file || `images/${id}.jpg`;
+      const itemId = item.id !== undefined ? item.id : (currentLightboxIndex + 1);
+      const imgSrc = item.custom_image_url || item.photo_file || `images/${itemId}.jpg`;
+      img.onerror = function() {
+        this.onerror = null;
+        if (typeof generateFallbackSVG === 'function') {
+          this.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(generateFallbackSVG(itemId, item.title, item.date_str));
+        }
+      };
       img.src = imgSrc;
       img.alt = item.title || 'Memory Photo';
 
       if (title) title.textContent = item.title || '';
       if (date) date.textContent = item.date_str || '';
       if (caption) caption.textContent = item.caption ? `"${item.caption}"` : '';
+      
+      const posStr = `${currentLightboxIndex + 1} / ${list.length}`;
+      if (counterText) counterText.textContent = posStr;
+      if (indexPill && !counterText) indexPill.textContent = posStr;
+    }
 
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+    function syncLightboxIfOpen() {
+      const modal = document.getElementById('photo-lightbox-modal');
+      if (modal && modal.style.display !== 'none') {
+        const list = getActivePhotosList();
+        if (!list || list.length === 0) {
+          closePhotoLightbox();
+        } else {
+          if (currentLightboxIndex >= list.length) {
+            currentLightboxIndex = list.length - 1;
+          }
+          updateLightboxDisplay();
+        }
+      }
+    }
+
+    let _previousActiveElement = null;
+
+    function openPhotoLightbox(id) {
+      const list = getActivePhotosList();
+      if (!list || list.length === 0) return;
+
+      let idx = list.findIndex(p => p.id === id || p.id === Number(id));
+      if (idx === -1) {
+        idx = list.findIndex((p, i) => (i + 1) === Number(id));
+      }
+      currentLightboxIndex = (idx !== -1) ? idx : 0;
+
+      updateLightboxDisplay();
+
+      const modal = document.getElementById('photo-lightbox-modal');
+      if (modal) {
+        _previousActiveElement = document.activeElement;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+
+        // Focus close button for accessible keyboard & screen reader navigation
+        const closeBtn = document.getElementById('lightbox-close-btn') || modal.querySelector('button');
+        if (closeBtn) {
+          try {
+            closeBtn.focus();
+          } catch (err) {}
+        }
+      }
     }
 
     function closePhotoLightbox(e) {
       if (e && e.target && e.target.closest('#lightbox-modal-img')) return;
+      if (e && e.target && (e.target.closest('#lightbox-prev-btn') || e.target.closest('#lightbox-next-btn') || e.target.closest('#lightbox-prev-label-btn') || e.target.closest('#lightbox-next-label-btn'))) return;
       const modal = document.getElementById('photo-lightbox-modal');
-      if (modal) modal.style.display = 'none';
-      document.body.style.overflow = '';
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+        if (_previousActiveElement && typeof _previousActiveElement.focus === 'function') {
+          try {
+            _previousActiveElement.focus();
+          } catch (err) {}
+          _previousActiveElement = null;
+        }
+      }
     }
+
+    function nextLightboxPhoto(e) {
+      if (e && e.stopPropagation) e.stopPropagation();
+      const list = getActivePhotosList();
+      if (!list || list.length === 0) return;
+      currentLightboxIndex = (currentLightboxIndex + 1) % list.length;
+      updateLightboxDisplay();
+    }
+
+    function prevLightboxPhoto(e) {
+      if (e && e.stopPropagation) e.stopPropagation();
+      const list = getActivePhotosList();
+      if (!list || list.length === 0) return;
+      currentLightboxIndex = (currentLightboxIndex - 1 + list.length) % list.length;
+      updateLightboxDisplay();
+    }
+
+    // Touch Swipe Support for Photo Lightbox
+    let _lbTouchStartX = 0;
+    let _lbTouchStartY = 0;
+    let _lbIsMultiTouch = false;
+    let _lightboxTouchInitialized = false;
+
+    function setupLightboxTouch() {
+      if (_lightboxTouchInitialized) return;
+      const modal = document.getElementById('photo-lightbox-modal');
+      if (!modal) return;
+      _lightboxTouchInitialized = true;
+
+      modal.addEventListener('touchstart', function(e) {
+        if (!e.touches || e.touches.length === 0) return;
+        if (e.touches.length > 1) {
+          _lbIsMultiTouch = true;
+          return;
+        }
+        _lbIsMultiTouch = false;
+        _lbTouchStartX = e.touches[0].clientX;
+        _lbTouchStartY = e.touches[0].clientY;
+      }, { passive: true });
+
+      modal.addEventListener('touchend', function(e) {
+        if (_lbIsMultiTouch) {
+          if (e.touches && e.touches.length === 0) {
+            _lbIsMultiTouch = false;
+          }
+          return;
+        }
+        if (!e.changedTouches || e.changedTouches.length === 0) return;
+        if (e.target && e.target.closest && e.target.closest('button')) return;
+        const deltaX = e.changedTouches[0].clientX - _lbTouchStartX;
+        const deltaY = e.changedTouches[0].clientY - _lbTouchStartY;
+        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+          if (deltaX < 0) {
+            nextLightboxPhoto();
+          } else {
+            prevLightboxPhoto();
+          }
+        }
+      }, { passive: true });
+    }
+
+    // Keyboard Arrow Navigation & Focus Trap for Photo Lightbox
+    document.addEventListener('keydown', function(e) {
+      const modal = document.getElementById('photo-lightbox-modal');
+      if (!modal || modal.style.display === 'none') return;
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextLightboxPhoto(e);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevLightboxPhoto(e);
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        closePhotoLightbox();
+      } else if (e.key === 'Tab') {
+        // Trap focus inside modal
+        const focusables = modal.querySelectorAll('button:not([disabled]), [tabindex]:not([tabindex="-1"])');
+        if (focusables && focusables.length > 0) {
+          const first = focusables[0];
+          const last = focusables[focusables.length - 1];
+          if (e.shiftKey) {
+            if (document.activeElement === first || !modal.contains(document.activeElement)) {
+              e.preventDefault();
+              last.focus();
+            }
+          } else {
+            if (document.activeElement === last || !modal.contains(document.activeElement)) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        }
+      }
+    });
 
     function showGiftToast(msg, icon) {
       const toast = document.getElementById('gift-toast-notification');
@@ -3807,10 +4294,16 @@
       });
     }
 
-    // Call loadSavedLetter on load
+    // Call initializers on load
     document.addEventListener('DOMContentLoaded', () => {
       loadSavedLetter();
+      initAmbientPetals();
+      setupLightboxTouch();
     });
+    if (document.readyState !== 'loading') {
+      initAmbientPetals();
+      setupLightboxTouch();
+    }
 
   </script>
 
@@ -3948,27 +4441,61 @@
     <span id="gift-toast-text">Success</span>
   </div>
 
+  <!-- FLOATING AMBIENT ROSE PETALS TOGGLE BUTTON (44x44px TOUCH TARGET) -->
+  <button id="ambient-petals-toggle" onclick="toggleAmbientPetals()" aria-label="Toggle ambient rose petals and sparkles" aria-pressed="true" title="Toggle floating rose petals and sparkles" class="fixed bottom-20 right-4 sm:bottom-22 sm:right-6 z-[45] w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-slate-900/90 hover:bg-slate-800/90 backdrop-blur-md border border-pink-400/50 hover:border-pink-300 text-lg flex items-center justify-center transition active:scale-90 shadow-xl shadow-pink-500/20 text-pink-200 select-none">
+    <span id="petals-toggle-icon" class="inline-block transition-transform duration-300">🌸</span>
+  </button>
 
   <!-- ============================================================= -->
-  <!-- FULL-SCREEN PHOTO LIGHTBOX MODAL                              -->
+  <!-- FULL-SCREEN PHOTO LIGHTBOX MODAL (WITH PREV / NEXT & COUNTER)  -->
   <!-- ============================================================= -->
-  <div id="photo-lightbox-modal" class="fixed inset-0 z-[99999] bg-slate-950/95 backdrop-blur-2xl items-center justify-center p-3 sm:p-6 transition-all duration-300" style="display: none;" onclick="closePhotoLightbox(event)">
-    <div class="relative max-w-2xl w-full max-h-[90vh] flex flex-col rounded-3xl bg-slate-900/95 border border-white/20 shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
-      <!-- Close Button -->
-      <button onclick="closePhotoLightbox()" aria-label="Close photo preview" class="absolute top-3 right-3 z-30 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-slate-950/80 hover:bg-rose-600 text-white flex items-center justify-center text-sm font-bold border border-white/20 transition active:scale-95 shadow-lg">
-        ✕
-      </button>
-      <!-- Image Container -->
-      <div class="relative flex-1 min-h-[280px] sm:min-h-[400px] bg-slate-950 flex items-center justify-center overflow-hidden p-2">
-        <img id="lightbox-modal-img" src="images/1.jpg" alt="Memory Photo" class="max-w-full max-h-[65vh] object-contain rounded-2xl shadow-2xl transition-transform duration-300">
+  <div id="photo-lightbox-modal" role="dialog" aria-modal="true" aria-label="Photo Lightbox Gallery" class="fixed inset-0 z-[99999] bg-slate-950/95 backdrop-blur-2xl items-center justify-center p-3 sm:p-6 transition-all duration-300 select-none" style="display: none;" onclick="closePhotoLightbox(event)">
+    <div class="relative max-w-2xl w-full max-h-[92vh] flex flex-col rounded-3xl bg-slate-900/95 border border-white/20 shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+      
+      <!-- Top Bar: Photo Index Counter Pill & Close Button -->
+      <div class="absolute top-3 left-3 right-3 z-30 flex items-center justify-between pointer-events-none">
+        <div id="lightbox-index-pill" aria-live="polite" class="pointer-events-auto px-3 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-md border border-white/20 text-xs font-mono text-pink-300 font-bold shadow-lg flex items-center gap-1.5">
+          <span>📷</span> <span id="lightbox-counter-text">1 / 5</span>
+        </div>
+        <button id="lightbox-close-btn" onclick="closePhotoLightbox()" aria-label="Close photo preview" class="pointer-events-auto w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-slate-950/85 hover:bg-rose-600 text-white flex items-center justify-center text-base font-bold border border-white/20 transition active:scale-95 shadow-lg">
+          ✕
+        </button>
       </div>
-      <!-- Caption & Info Bar -->
-      <div class="shrink-0 p-4 sm:p-5 bg-gradient-to-t from-slate-950 via-slate-900 to-slate-900/90 border-t border-white/10 space-y-1 text-center sm:text-left">
+
+      <!-- Image Container with Left / Right Floating Nav Buttons -->
+      <div id="lightbox-image-container" class="relative flex-1 min-h-[280px] sm:min-h-[400px] bg-slate-950 flex items-center justify-center overflow-hidden p-2 touch-pan-y">
+        <!-- Floating Previous Button (min 44x44px touch target) -->
+        <button id="lightbox-prev-btn" onclick="prevLightboxPhoto(event)" aria-label="Previous photo" class="absolute left-2.5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-slate-950/85 hover:bg-pink-600/90 text-white flex items-center justify-center border border-white/25 transition active:scale-90 shadow-xl group">
+          <span class="text-xl font-bold group-hover:-translate-x-0.5 transition-transform">❮</span>
+        </button>
+
+        <!-- Main Photo -->
+        <img id="lightbox-modal-img" src="images/1.jpg" alt="Memory Photo" class="max-w-full max-h-[62vh] object-contain rounded-2xl shadow-2xl transition-transform duration-300">
+
+        <!-- Floating Next Button (min 44x44px touch target) -->
+        <button id="lightbox-next-btn" onclick="nextLightboxPhoto(event)" aria-label="Next photo" class="absolute right-2.5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-slate-950/85 hover:bg-pink-600/90 text-white flex items-center justify-center border border-white/25 transition active:scale-90 shadow-xl group">
+          <span class="text-xl font-bold group-hover:translate-x-0.5 transition-transform">❯</span>
+        </button>
+      </div>
+
+      <!-- Caption & Info Bar with Bottom Navigation Controls -->
+      <div class="shrink-0 p-4 sm:p-5 bg-gradient-to-t from-slate-950 via-slate-900 to-slate-900/90 border-t border-white/10 space-y-2 text-center sm:text-left">
         <div class="flex flex-wrap items-center justify-between gap-1">
           <h4 id="lightbox-modal-title" class="text-sm sm:text-base font-bold text-white tracking-tight"></h4>
           <span id="lightbox-modal-date" class="text-xs font-mono text-amber-300"></span>
         </div>
         <p id="lightbox-modal-caption" class="text-xs sm:text-sm text-slate-300 italic font-serif leading-relaxed"></p>
+
+        <!-- Bottom Prev / Next Toolbar (min 44x44px touch targets) -->
+        <div class="flex items-center justify-between pt-2 border-t border-white/10 gap-2">
+          <button id="lightbox-prev-label-btn" onclick="prevLightboxPhoto(event)" aria-label="Previous photo" class="min-w-[44px] min-h-[44px] px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 border border-white/15">
+            <span>❮</span> Previous
+          </button>
+          <span class="text-[11px] text-slate-400 font-mono hidden sm:inline">Swipe or use ← → keys</span>
+          <button id="lightbox-next-label-btn" onclick="nextLightboxPhoto(event)" aria-label="Next photo" class="min-w-[44px] min-h-[44px] px-3.5 py-2 rounded-xl bg-gradient-to-r from-pink-500/30 to-purple-500/30 hover:from-pink-500/45 hover:to-purple-500/45 text-white text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 border border-pink-400/30 shadow-sm">
+            Next <span>❯</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
