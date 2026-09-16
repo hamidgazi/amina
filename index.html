@@ -1151,11 +1151,14 @@
               <span>💫</span> Two Cities, One Heart • Pre-Rukhsati Bond
             </div>
             <h3 class="text-base sm:text-lg font-black text-white tracking-tight flex items-center gap-2">
-              <span>Surat ⟷ Bhiwandi</span>
-              <span class="text-[11px] font-mono font-medium text-amber-300 px-2 py-0.5 rounded-full bg-amber-400/15 border border-amber-400/25">Do Shehar, Ek Jaan</span>
+              <span id="two-cities-header-cities">Surat ⟷ Bhiwandi</span>
+              <span id="two-cities-header-subtitle" class="text-[11px] font-mono font-medium text-amber-300 px-2 py-0.5 rounded-full bg-amber-400/15 border border-amber-400/25">Do Shehar, Ek Jaan</span>
             </h3>
           </div>
           <div class="shrink-0 flex items-center gap-1.5 self-start sm:self-auto">
+            <button onclick="openTwoCitiesEditor()" aria-label="Edit Two Cities message and dua" class="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[11px] font-semibold flex items-center gap-1 transition active:scale-95 min-h-[36px]">
+              <span>✏️</span> Edit Card
+            </button>
             <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-[10px] font-bold tracking-wide flex items-center gap-1">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
               Nikah: 03 July 2026
@@ -1173,7 +1176,7 @@
                   <span class="text-xl">🏙️</span>
                 </div>
               </div>
-              <span class="text-xs font-bold text-white tracking-wide">Surat</span>
+              <span id="two-cities-hamid-city" class="text-xs font-bold text-white tracking-wide">Surat</span>
               <span class="text-[10px] font-medium text-blue-300">Hamid (Husband)</span>
             </div>
 
@@ -1188,7 +1191,7 @@
                   <span class="text-base">❤️</span>
                 </button>
               </div>
-              <span class="block text-[10px] font-mono text-slate-400 mt-8 tracking-wider text-center">~280 km • United in Soul</span>
+              <span id="two-cities-distance-tagline" class="block text-[10px] font-mono text-slate-400 mt-8 tracking-wider text-center">~280 km • United in Soul</span>
             </div>
 
             <!-- Amina Node (Bhiwandi) -->
@@ -1198,7 +1201,7 @@
                   <span class="text-xl">🌸</span>
                 </div>
               </div>
-              <span class="text-xs font-bold text-white tracking-wide">Bhiwandi</span>
+              <span id="two-cities-amina-city" class="text-xs font-bold text-white tracking-wide">Bhiwandi</span>
               <span class="text-[10px] font-medium text-pink-300">Amina (Wife)</span>
             </div>
           </div>
@@ -1219,10 +1222,10 @@
 
         <!-- Romantic Hinglish Blessing & Du'a Text -->
         <div class="p-4 rounded-2xl bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-amber-500/10 border border-pink-500/20 text-xs sm:text-[13px] text-slate-200 leading-relaxed font-serif space-y-2">
-          <p>
+          <p id="two-cities-message-text">
             "Fasle chahe Surat aur Bhiwandi ke darmiyan kitne bhi kilometers ke hon, Allah Ta'ala ne 03 July 2026 ko hamare dilon aur rooh ko hamesha ke liye ek kar diya hai. Bhale hi hum abhi alag sheharon me rehte hain aur hamari Rukhsati ka intezaar hai, lekin hamari har ek saans aur har ek dua ek dusre ke naam hai."
           </p>
-          <p class="text-[11px] sm:text-xs text-amber-200/90 italic font-sans">
+          <p id="two-cities-dua-text" class="text-[11px] sm:text-xs text-amber-200/90 italic font-sans">
             "Dua hai Allah Ta'ala hamare is pak rishte me be-inteha barkat, mohabbat aur sukoon ata farmaye, aur jaldi hi hume ek hi aashiyane me hamesha ke liye saath rehne ki khushiyan naseeb kare. Ameen! 🤲✨"
           </p>
         </div>
@@ -1847,11 +1850,16 @@
           <p class="text-xs text-rose-300 font-semibold mt-1">Hamid Gazi & Amina Chamadiya</p>
         </div>
 
-        <div class="py-3 px-4 rounded-2xl bg-white/5 border border-amber-500/30 max-w-sm mx-auto space-y-2">
-          <p class="text-xs text-slate-200 leading-relaxed font-sans">
+        <div class="py-3 px-4 rounded-2xl bg-white/5 border border-amber-500/30 max-w-sm mx-auto space-y-2 relative">
+          <div class="flex justify-end pb-1">
+            <button onclick="openCertificateEditor()" aria-label="Edit Certificate dedication" class="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[11px] font-medium flex items-center gap-1 transition active:scale-95 min-h-[36px]">
+              <span>✏️</span> Edit Dedication
+            </button>
+          </div>
+          <p id="certificate-dedication-text" class="text-xs text-slate-200 leading-relaxed font-sans">
             "Certified on Amina's 23rd Birthday — 17 September 2026. 14 April 2026 ki Baat Pakki se lekar 03 July 2026 ke sacred Nikah tak, 12,980 messages aur har ek heartbeat ke saath, do roohein hamesha ke liye ek ban gayi."
           </p>
-          <div class="text-[11px] font-serif italic text-amber-200">
+          <div id="certificate-blessing-text" class="text-[11px] font-serif italic text-amber-200">
             — Bound by Qubool Hai, destined for eternity ❤️
           </div>
         </div>
@@ -3938,6 +3946,49 @@
         console.warn('Could not serialize custom letter:', e);
       }
 
+      // 3. Bake custom Two Cities card values
+      try {
+        const savedCities = getStoredTwoCities();
+        if (savedCities) {
+          if (savedCities.hamidCity || savedCities.aminaCity) {
+            const pair = (savedCities.hamidCity || 'Surat') + ' ⟷ ' + (savedCities.aminaCity || 'Bhiwandi');
+            html = html.replace(/<span id="two-cities-header-cities">.*?<\/span>/g, '<span id="two-cities-header-cities">' + escapeHtmlText(pair) + '</span>');
+          }
+          if (savedCities.hamidCity) {
+            html = html.replace(/<span id="two-cities-hamid-city"[^>]*>.*?<\/span>/g, '<span id="two-cities-hamid-city" class="text-xs font-bold text-white tracking-wide">' + escapeHtmlText(savedCities.hamidCity) + '</span>');
+          }
+          if (savedCities.aminaCity) {
+            html = html.replace(/<span id="two-cities-amina-city"[^>]*>.*?<\/span>/g, '<span id="two-cities-amina-city" class="text-xs font-bold text-white tracking-wide">' + escapeHtmlText(savedCities.aminaCity) + '</span>');
+          }
+          if (savedCities.tagline) {
+            html = html.replace(/<span id="two-cities-distance-tagline"[^>]*>.*?<\/span>/g, '<span id="two-cities-distance-tagline" class="block text-[10px] font-mono text-slate-400 mt-8 tracking-wider text-center">' + escapeHtmlText(savedCities.tagline) + '</span>');
+          }
+          if (savedCities.message) {
+            html = html.replace(/<p id="two-cities-message-text"[^>]*>.*?<\/p>/gs, '<p id="two-cities-message-text">"' + escapeHtmlText(savedCities.message) + '"</p>');
+          }
+          if (savedCities.dua) {
+            html = html.replace(/<p id="two-cities-dua-text"[^>]*>.*?<\/p>/gs, '<p id="two-cities-dua-text" class="text-[11px] sm:text-xs text-amber-200/90 italic font-sans">"' + escapeHtmlText(savedCities.dua) + '"</p>');
+          }
+        }
+      } catch (e) {
+        console.warn('Could not serialize Two Cities:', e);
+      }
+
+      // 4. Bake custom Soulmate Certificate values
+      try {
+        const savedCert = getStoredCertificate();
+        if (savedCert) {
+          if (savedCert.dedication) {
+            html = html.replace(/<p id="certificate-dedication-text"[^>]*>.*?<\/p>/gs, '<p id="certificate-dedication-text" class="text-xs text-slate-200 leading-relaxed font-sans">"' + escapeHtmlText(savedCert.dedication) + '"</p>');
+          }
+          if (savedCert.blessing) {
+            html = html.replace(/<div id="certificate-blessing-text"[^>]*>.*?<\/div>/gs, '<div id="certificate-blessing-text" class="text-[11px] font-serif italic text-amber-200">' + escapeHtmlText(savedCert.blessing) + '</div>');
+          }
+        }
+      } catch (e) {
+        console.warn('Could not serialize Certificate:', e);
+      }
+
       return html;
     }
 
@@ -4268,6 +4319,152 @@
       }
     });
 
+    
+    // =============================================================
+    // "TWO CITIES, ONE HEART" CARD CONTROLLER
+    // =============================================================
+    const DEFAULT_TWO_CITIES = {
+      hamidCity: 'Surat',
+      aminaCity: 'Bhiwandi',
+      tagline: '~280 km • United in Soul',
+      message: 'Fasle chahe Surat aur Bhiwandi ke darmiyan kitne bhi kilometers ke hon, Allah Ta\'ala ne 03 July 2026 ko hamare dilon aur rooh ko hamesha ke liye ek kar diya hai. Bhale hi hum abhi alag sheharon me rehte hain aur hamari Rukhsati ka intezaar hai, lekin hamari har ek saans aur har ek dua ek dusre ke naam hai.',
+      dua: 'Dua hai Allah Ta\'ala hamare is pak rishte me be-inteha barkat, mohabbat aur sukoon ata farmaye, aur jaldi hi hume ek hi aashiyane me hamesha ke liye saath rehne ki khushiyan naseeb kare. Ameen! 🤲✨'
+    };
+
+    function getStoredTwoCities() {
+      try {
+        const raw = localStorage.getItem('amina_custom_two_cities');
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+      return null;
+    }
+
+    function applyTwoCitiesToDisplay(obj) {
+      const data = obj || DEFAULT_TWO_CITIES;
+      const headerCities = document.getElementById('two-cities-header-cities');
+      const hamidCity = document.getElementById('two-cities-hamid-city');
+      const aminaCity = document.getElementById('two-cities-amina-city');
+      const tagline = document.getElementById('two-cities-distance-tagline');
+      const msg = document.getElementById('two-cities-message-text');
+      const dua = document.getElementById('two-cities-dua-text');
+
+      if (headerCities) headerCities.textContent = `${data.hamidCity || 'Surat'} ⟷ ${data.aminaCity || 'Bhiwandi'}`;
+      if (hamidCity) hamidCity.textContent = data.hamidCity || 'Surat';
+      if (aminaCity) aminaCity.textContent = data.aminaCity || 'Bhiwandi';
+      if (tagline) tagline.textContent = data.tagline || '~280 km • United in Soul';
+      if (msg) msg.textContent = `"${data.message || ''}"`;
+      if (dua) dua.textContent = `"${data.dua || ''}"`;
+    }
+
+    function openTwoCitiesEditor() {
+      const stored = getStoredTwoCities() || DEFAULT_TWO_CITIES;
+      document.getElementById('two-cities-edit-hamid').value = stored.hamidCity || 'Surat';
+      document.getElementById('two-cities-edit-amina').value = stored.aminaCity || 'Bhiwandi';
+      document.getElementById('two-cities-edit-tagline').value = stored.tagline || '~280 km • United in Soul';
+      document.getElementById('two-cities-edit-message').value = stored.message || DEFAULT_TWO_CITIES.message;
+      document.getElementById('two-cities-edit-dua').value = stored.dua || DEFAULT_TWO_CITIES.dua;
+
+      const modal = document.getElementById('two-cities-editor-modal');
+      if (modal) modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTwoCitiesEditor(e) {
+      if (e && e.target && e.target.closest && e.target.closest('.rounded-3xl') && !e.target.closest('button[onclick*="closeTwoCitiesEditor"]')) return;
+      const modal = document.getElementById('two-cities-editor-modal');
+      if (modal) modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function saveTwoCitiesCustom() {
+      const hamidCity = document.getElementById('two-cities-edit-hamid').value.trim() || 'Surat';
+      const aminaCity = document.getElementById('two-cities-edit-amina').value.trim() || 'Bhiwandi';
+      const tagline = document.getElementById('two-cities-edit-tagline').value.trim() || '~280 km • United in Soul';
+      const message = document.getElementById('two-cities-edit-message').value.trim() || DEFAULT_TWO_CITIES.message;
+      const dua = document.getElementById('two-cities-edit-dua').value.trim() || DEFAULT_TWO_CITIES.dua;
+
+      const obj = { hamidCity, aminaCity, tagline, message, dua };
+      try {
+        localStorage.setItem('amina_custom_two_cities', JSON.stringify(obj));
+      } catch (e) {}
+      applyTwoCitiesToDisplay(obj);
+      closeTwoCitiesEditor();
+      showGiftToast('Saved Two Cities message & dua!', '💫');
+    }
+
+    function resetTwoCitiesDefault() {
+      try {
+        localStorage.removeItem('amina_custom_two_cities');
+      } catch (e) {}
+      applyTwoCitiesToDisplay(DEFAULT_TWO_CITIES);
+      closeTwoCitiesEditor();
+      showGiftToast('Reset Two Cities to default', '↺');
+    }
+
+    // =============================================================
+    // SOULMATE CERTIFICATE CONTROLLER
+    // =============================================================
+    const DEFAULT_CERTIFICATE = {
+      dedication: 'Certified on Amina\'s 23rd Birthday — 17 September 2026. 14 April 2026 ki Baat Pakki se lekar 03 July 2026 ke sacred Nikah tak, 12,980 messages aur har ek heartbeat ke saath, do roohein hamesha ke liye ek ban gayi.',
+      blessing: '— Bound by Qubool Hai, destined for eternity ❤️'
+    };
+
+    function getStoredCertificate() {
+      try {
+        const raw = localStorage.getItem('amina_custom_certificate');
+        if (raw) return JSON.parse(raw);
+      } catch (e) {}
+      return null;
+    }
+
+    function applyCertificateToDisplay(obj) {
+      const data = obj || DEFAULT_CERTIFICATE;
+      const ded = document.getElementById('certificate-dedication-text');
+      const bless = document.getElementById('certificate-blessing-text');
+
+      if (ded) ded.textContent = `"${data.dedication || ''}"`;
+      if (bless) bless.textContent = data.blessing || '';
+    }
+
+    function openCertificateEditor() {
+      const stored = getStoredCertificate() || DEFAULT_CERTIFICATE;
+      document.getElementById('certificate-edit-dedication').value = stored.dedication || DEFAULT_CERTIFICATE.dedication;
+      document.getElementById('certificate-edit-blessing').value = stored.blessing || DEFAULT_CERTIFICATE.blessing;
+
+      const modal = document.getElementById('certificate-editor-modal');
+      if (modal) modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCertificateEditor(e) {
+      if (e && e.target && e.target.closest && e.target.closest('.rounded-3xl') && !e.target.closest('button[onclick*="closeCertificateEditor"]')) return;
+      const modal = document.getElementById('certificate-editor-modal');
+      if (modal) modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function saveCertificateCustom() {
+      const dedication = document.getElementById('certificate-edit-dedication').value.trim() || DEFAULT_CERTIFICATE.dedication;
+      const blessing = document.getElementById('certificate-edit-blessing').value.trim() || DEFAULT_CERTIFICATE.blessing;
+
+      const obj = { dedication, blessing };
+      try {
+        localStorage.setItem('amina_custom_certificate', JSON.stringify(obj));
+      } catch (e) {}
+      applyCertificateToDisplay(obj);
+      closeCertificateEditor();
+      showGiftToast('Saved Soulmate Certificate dedication!', '📜');
+    }
+
+    function resetCertificateDefault() {
+      try {
+        localStorage.removeItem('amina_custom_certificate');
+      } catch (e) {}
+      applyCertificateToDisplay(DEFAULT_CERTIFICATE);
+      closeCertificateEditor();
+      showGiftToast('Reset Certificate to default', '↺');
+    }
+
     function showGiftToast(msg, icon) {
       const toast = document.getElementById('gift-toast-notification');
       if (!toast) return;
@@ -4297,6 +4494,8 @@
     // Call initializers on load
     document.addEventListener('DOMContentLoaded', () => {
       loadSavedLetter();
+      applyTwoCitiesToDisplay(getStoredTwoCities());
+      applyCertificateToDisplay(getStoredCertificate());
       initAmbientPetals();
       setupLightboxTouch();
     });
@@ -4494,6 +4693,113 @@
           <span class="text-[11px] text-slate-400 font-mono hidden sm:inline">Swipe or use ← → keys</span>
           <button id="lightbox-next-label-btn" onclick="nextLightboxPhoto(event)" aria-label="Next photo" class="min-w-[44px] min-h-[44px] px-3.5 py-2 rounded-xl bg-gradient-to-r from-pink-500/30 to-purple-500/30 hover:from-pink-500/45 hover:to-purple-500/45 text-white text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 border border-pink-400/30 shadow-sm">
             Next <span>❯</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================= -->
+  <!-- "TWO CITIES, ONE HEART" TEXT & DU'A EDITOR MODAL              -->
+  <!-- ============================================================= -->
+  <div id="two-cities-editor-modal" class="fixed inset-0 z-[99999] bg-slate-950/90 backdrop-blur-xl items-center justify-center p-3 sm:p-6 transition-all duration-300" style="display: none;" onclick="closeTwoCitiesEditor(event)">
+    <div class="relative max-w-lg w-full max-h-[90vh] flex flex-col rounded-3xl bg-slate-900 border border-white/20 shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-5 bg-gradient-to-r from-pink-900/40 via-purple-900/40 to-slate-900 border-b border-white/10 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">💫</span>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-white">Edit Two Cities Message & Du'a</h3>
+            <p class="text-[11px] text-pink-200">Pre-Rukhsati Sacred Bond • Surat & Bhiwandi</p>
+          </div>
+        </div>
+        <button onclick="closeTwoCitiesEditor()" aria-label="Close modal" class="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-slate-950/80 hover:bg-rose-600 text-white flex items-center justify-center text-sm font-bold border border-white/20 transition active:scale-95">
+          ✕
+        </button>
+      </div>
+      <!-- Modal Body (Scrollable) -->
+      <div class="p-4 sm:p-5 overflow-y-auto space-y-4 text-xs">
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Hamid's City</label>
+            <input id="two-cities-edit-hamid" type="text" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/15 text-white font-medium text-xs focus:border-pink-500 focus:outline-none" value="Surat">
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Amina's City</label>
+            <input id="two-cities-edit-amina" type="text" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/15 text-white font-medium text-xs focus:border-pink-500 focus:outline-none" value="Bhiwandi">
+          </div>
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-300 mb-1">Distance / Tagline</label>
+          <input id="two-cities-edit-tagline" type="text" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/15 text-white font-mono text-xs focus:border-pink-500 focus:outline-none" value="~280 km • United in Soul">
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-300 mb-1">Romantic Narrative Message</label>
+          <textarea id="two-cities-edit-message" rows="4" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/15 text-white text-xs leading-relaxed focus:border-pink-500 focus:outline-none"></textarea>
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold text-amber-300 mb-1">Sacred Du'a for Amina & Marriage</label>
+          <textarea id="two-cities-edit-dua" rows="3" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-amber-500/30 text-amber-200 text-xs leading-relaxed focus:border-amber-500 focus:outline-none"></textarea>
+        </div>
+      </div>
+      <!-- Modal Footer -->
+      <div class="p-3 sm:p-4 bg-slate-950 border-t border-white/10 flex items-center justify-between gap-2">
+        <button onclick="resetTwoCitiesDefault()" class="px-3 py-2 min-h-[44px] rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 text-xs font-medium border border-white/10 transition">
+          ↺ Reset
+        </button>
+        <div class="flex items-center gap-2">
+          <button onclick="closeTwoCitiesEditor()" class="px-3 py-2 min-h-[44px] rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-medium border border-white/10 transition">
+            Cancel
+          </button>
+          <button onclick="saveTwoCitiesCustom()" class="px-5 py-2 min-h-[44px] rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white text-xs font-bold shadow-lg shadow-pink-500/30 transition active:scale-95">
+            💾 Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- SOULMATE CERTIFICATE DEDICATION & BLESSING EDITOR MODAL      -->
+  <!-- ============================================================= -->
+  <div id="certificate-editor-modal" class="fixed inset-0 z-[99999] bg-slate-950/90 backdrop-blur-xl items-center justify-center p-3 sm:p-6 transition-all duration-300" style="display: none;" onclick="closeCertificateEditor(event)">
+    <div class="relative max-w-lg w-full max-h-[90vh] flex flex-col rounded-3xl bg-slate-900 border border-white/20 shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-5 bg-gradient-to-r from-amber-900/40 via-rose-900/40 to-slate-900 border-b border-white/10 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">📜</span>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-white">Edit Soulmate Certificate</h3>
+            <p class="text-[11px] text-amber-200">100% Soulmate Dedication & Blessing</p>
+          </div>
+        </div>
+        <button onclick="closeCertificateEditor()" aria-label="Close modal" class="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-slate-950/80 hover:bg-rose-600 text-white flex items-center justify-center text-sm font-bold border border-white/20 transition active:scale-95">
+          ✕
+        </button>
+      </div>
+      <!-- Modal Body -->
+      <div class="p-4 sm:p-5 overflow-y-auto space-y-4 text-xs">
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-300 mb-1">Dedication Text</label>
+          <textarea id="certificate-edit-dedication" rows="4" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-white/15 text-white text-xs leading-relaxed focus:border-amber-500 focus:outline-none"></textarea>
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold text-amber-300 mb-1">Blessing Quote Line</label>
+          <input id="certificate-edit-blessing" type="text" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-amber-500/30 text-amber-200 text-xs font-serif italic focus:border-amber-500 focus:outline-none">
+        </div>
+      </div>
+      <!-- Modal Footer -->
+      <div class="p-3 sm:p-4 bg-slate-950 border-t border-white/10 flex items-center justify-between gap-2">
+        <button onclick="resetCertificateDefault()" class="px-3 py-2 min-h-[44px] rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 text-xs font-medium border border-white/10 transition">
+          ↺ Reset
+        </button>
+        <div class="flex items-center gap-2">
+          <button onclick="closeCertificateEditor()" class="px-3 py-2 min-h-[44px] rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-medium border border-white/10 transition">
+            Cancel
+          </button>
+          <button onclick="saveCertificateCustom()" class="px-5 py-2 min-h-[44px] rounded-xl bg-gradient-to-r from-amber-500 to-rose-600 hover:from-amber-600 hover:to-rose-700 text-white text-xs font-bold shadow-lg shadow-amber-500/30 transition active:scale-95">
+            💾 Save Changes
           </button>
         </div>
       </div>
