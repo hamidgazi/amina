@@ -163,16 +163,20 @@ It commemorates her **23rd Birthday (17 September 2026)**, analyzes **12,980 rea
   4. *What was by far our mutual favorite emoji?* (👍 Thumbs Up!)
   5. *What sacred day was our Nikah solemnized?* (03 July 2026!)
   - Answering triggers green celebratory sparkle animations and cheering feedback!
+- **🔒 Permanent Quiz Lock (No Undo / No Retrying)**:
+  - Once Amina taps an answer, it is **locked permanently**! There is no undo or changing answers, even if she refreshes the page. This preserves the genuine excitement and honesty of the quiz.
+  - Her answers and final score are saved permanently.
 - **📜 The Official 100% Soulmate Certificate**:
   - Crowned with a golden ring emoji, officially certifying Hamid Gazi & Amina Chamadiya as **100% Infinite Soulmates**.
   - **Certified Dedication**:
     > *"Certified on Amina's 23rd Birthday — 17 September 2026. 14 April 2026 ki Baat Pakki se lekar 03 July 2026 ke sacred Nikah tak, 12,980 messages aur har ek heartbeat ke saath, do roohein hamesha ke liye ek ban gayi."*
   - **Blessing Quote**:
     > *"— Bound by Qubool Hai, destined for eternity ❤️"*
-  - **Buttons**:
+  - **Action Buttons**:
+    - `📲 Send My Quiz Score to Hamid on WhatsApp 💌`: Automatically prepares a cute WhatsApp message with her exact score (e.g. `5/5`) to send straight to Hamid's chat!
     - `🎉 Shower Soulmate Confetti!`: Triggers multi-stage explosive golden confetti.
     - `💌 Re-read Hamid's Birthday Letter`: Re-opens the wax-sealed love letter anytime.
-    - `✏️ Edit Dedication`: Hamid can edit the certificate dedication text and blessing quote anytime!
+    - `✏️ Edit Dedication`: Unlocked for Hamid in Husband Mode.
 
 ---
 
@@ -188,60 +192,106 @@ It commemorates her **23rd Birthday (17 September 2026)**, analyzes **12,980 rea
 
 ---
 
-## 5. The Husband's In-App Editing Toolkit
-Hamid has complete control to edit any text, du'a, photo, or title directly inside the website from his phone or computer.
+## 5. Secret Husband Edit Mode & Private Quiz Dashboard
+
+All edit options, buttons, and sync controls are **100% hidden and invisible by default** so Amina experiences a pure, uninterrupted romantic gift.
+
+Only Hamid can unlock the editing controls and access the private quiz results.
+
+### 🔐 How to Unlock Husband Mode (Secret Triple-Tap)
+There are **NO visible settings or admin icons** anywhere on the page so Amina won't suspect anything. To unlock:
+1. **Secret Triple-Tap**: Quickly tap (3 times within 1.5 seconds) any of these 3 secret spots:
+   - The **Wax Seal (`H ❤️ A`)** on top of the Love Letter card.
+   - The top navigation bar title **`Amina & Hamid`**.
+   - The **`Surat`** city node in the "Two Cities, One Heart" card.
+2. The secret **"🔐 Husband Secret Access"** modal will pop up.
+3. Enter your secret passcode:
+   - **Default Passcode**: `03072026` (Your sacred Nikah Date: 03 July 2026).
+4. Tap **`🔓 Unlock`**.
+5. Once unlocked:
+   - All edit buttons (`✏️ Edit Letter`, `✏️ Edit Card`, `✏️ Edit Memory`, `➕ Add Memory`, `✏️ Edit Dedication`, `[🌐 Sync Online]`) instantly appear across the site.
+   - The **Husband Control Center** dashboard opens automatically.
+   - A discreet floating pill appears at the bottom-left (`[🔓 Edit Mode | 📊 Results & Hub | 🔒 Lock]`).
+
+---
+
+### 📊 Private Quiz Results Dashboard (Husband Only)
+Inside the Husband Control Center (`#husband-dashboard-modal`), only you can see:
+- **Amina's Quiz Status & Score**: Shows whether Amina has taken the quiz and her exact score (e.g., `Score: 5 / 5`).
+- **Completion Timestamp & Match Rating**: Shows the exact date and time she completed it, along with her compatibility rating (e.g., *100% Perfect Match ❤️*).
+- **Question-by-Question Breakdown**: Shows every question, exactly which option Amina chose, whether it was correct (marked with green `✓ Correct`) or a cute mistake (marked with red `✗ Mistake`), and what the correct answer was.
+- **Testing Reset Button**: An optional `↺ Reset Quiz Answers` button allows you to clear the quiz state if you ever want to test it yourself.
+
+---
+
+### 🔑 Passcode Management
+- Inside the Husband Dashboard under **Passcode Management**, you can type a new passcode and tap **Update Passcode** anytime.
+- It will be saved securely on your device.
+
+---
+
+### 🔒 Locking Edit Mode
+When you are done editing or before handing your phone to Amina:
+- Simply tap the red **`🔒 Lock`** button on the bottom-left floating pill or in the Husband Control Center header.
+- All edit buttons will immediately vanish from the screen, returning the website to Amina's clean romantic view.
+
+---
 
 ### A. Editing the Love Letter
-1. Open the letter (or tap `💌 Re-read Hamid's Birthday Letter` in Step 6).
-2. Tap the **`✏️ Edit Letter`** button in the letter header.
-3. You can edit:
+1. Unlock Husband Mode.
+2. Open the letter (or tap `💌 Re-read Hamid's Birthday Letter` in Step 6).
+3. Tap the **`✏️ Edit Letter`** button in the letter header.
+4. You can edit:
    - **Greeting** (e.g. *Meri Pyaari Amina,*)
    - **Sacred Nikah Blessing Tag** (e.g. *Sacred Nikah Blessing • 03 July 2026*)
    - **Sacred Nikah Blessing Quote** (e.g. *"Qubool Hai — 03 July 2026 ko hamara Nikah hua..."*)
    - **Letter Body Paragraphs** (Your personal birthday message, Baat Pakki memory, pre-Rukhsati reflection, and du'as)
    - **Closing** (e.g. *Hamesha sirf tera, teri Rukhsati ke intezaar me,*)
    - **Signature** (e.g. *Your Husband, Hamid ❤️*)
-4. Tap **`💾 Save Changes`**.
+5. Tap **`💾 Save Changes`**.
 
 ---
 
 ### B. Editing the "Two Cities, One Heart" Card
-1. Go to **Step 1 (Story)**.
-2. Scroll to the **"Two Cities, One Heart"** card.
-3. Tap the **`✏️ Edit Card`** button in the header.
-4. You can edit:
+1. Unlock Husband Mode.
+2. Go to **Step 1 (Story)**.
+3. Scroll to the **"Two Cities, One Heart"** card.
+4. Tap the **`✏️ Edit Card`** button in the header.
+5. You can edit:
    - **Hamid's City** (Default: *Surat*)
    - **Amina's City** (Default: *Bhiwandi*)
    - **Distance/Tagline** (Default: *~280 km • United in Soul*)
    - **Romantic Narrative Message** (Your personal love words)
    - **Sacred Du'a** (Your heartfelt prayer for your marriage and Rukhsati)
-5. Tap **`💾 Save Changes`**.
+6. Tap **`💾 Save Changes`**.
 
 ---
 
 ### C. Editing Photos and Memories
-1. Go to **Step 5 (Milestones)**.
-2. Scroll to the **Polaroid Showcase**.
-3. Tap the **`✏️` Edit Button** on the top-right corner of any photo card.
-4. You can:
+1. Unlock Husband Mode.
+2. Go to **Step 5 (Milestones)**.
+3. Scroll to the **Polaroid Showcase**.
+4. Tap the **`✏️` Edit Button** on the top-right corner of any photo card.
+5. You can:
    - Tap **"Upload New Photo"** to replace the picture with any new photo from your phone/computer (automatically compressed so it loads fast on Amina's phone).
    - Change the **Title**.
    - Change the **Date / Subtitle**.
    - Rewrite the **Story / Caption**.
    - Tap **"🗑️ Delete Memory"** if you want to remove that card.
-5. Tap **`💾 Save Memory`**.
-6. You can also tap **`[➕ Add Memory]`** to add brand-new photos and memories!
+6. Tap **`💾 Save Memory`**.
+7. You can also tap **`[➕ Add Memory]`** to add brand-new photos and memories!
 
 ---
 
 ### D. Editing the Soulmate Certificate
-1. Go to **Step 6 (Trivia)**.
-2. Scroll down to the **100% Infinite Soulmates Certificate**.
-3. Tap the **`✏️ Edit Dedication`** button.
-4. You can edit:
+1. Unlock Husband Mode.
+2. Go to **Step 6 (Trivia)**.
+3. Scroll down to the **100% Infinite Soulmates Certificate**.
+4. Tap the **`✏️ Edit Dedication`** button.
+5. You can edit:
    - **Dedication Text**
    - **Blessing Quote Line**
-5. Tap **`💾 Save Changes`**.
+6. Tap **`💾 Save Changes`**.
 
 ---
 
@@ -249,9 +299,10 @@ Hamid has complete control to edit any text, du'a, photo, or title directly insi
 When you edit texts, photos, or du'as on your browser, they save instantly to your browser. To make sure **Amina sees them on her phone**:
 
 #### Method 1: In-Browser Sync (Fastest)
-1. Tap the **`[🌐 Sync Online]`** button in the top navigation bar.
-2. In the modal that appears, tap **`[🚀 Publish Changes to GitHub Pages]`**.
-3. The app automatically bakes all your edited texts, photos, and du'as into the website code and updates GitHub. Within ~30 seconds, Amina's link is updated live!
+1. Unlock Husband Mode.
+2. Tap the **`[🌐 Sync Online]`** button in the top navigation bar (or inside the Husband Control Center).
+3. In the modal that appears, tap **`[🚀 Publish Changes to GitHub Pages]`**.
+4. The app automatically bakes all your edited texts, photos, and du'as into the website code and updates GitHub (while stripping Husband Mode so Amina's site starts locked!). Within ~30 seconds, Amina's link is updated live!
 
 #### Method 2: 1-Click Desktop Batch Script
 1. On your computer Desktop, double-click the file:

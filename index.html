@@ -722,6 +722,32 @@
       user-select: none;
     }
 
+  
+    /* ============================================================= */
+    /* HUSBAND EDIT MODE & PASSCODE LOCK STYLES                      */
+    /* ============================================================= */
+    .husband-only-control {
+      display: none !important;
+    }
+    body.husband-unlocked .husband-only-control {
+      display: inline-flex !important;
+    }
+    body.husband-unlocked div.husband-only-control,
+    body.husband-unlocked button.husband-only-control {
+      display: flex !important;
+    }
+
+    #husband-unlocked-floating-pill {
+      position: fixed;
+      bottom: 4.5rem;
+      left: 1rem;
+      z-index: 45;
+      display: none;
+    }
+    body.husband-unlocked #husband-unlocked-floating-pill {
+      display: flex;
+    }
+
   </style>
 </head>
 <body class="antialiased select-none">
@@ -829,7 +855,7 @@
         <div class="shrink-0 relative pt-4 sm:pt-6 pb-1.5 sm:pb-3 px-3 sm:px-6 border-b border-white/10 bg-slate-950/60 backdrop-blur-md text-center rounded-t-3xl">
           
           <!-- 3D Crimson Wax Seal Badge with Ribbon Tails -->
-          <div class="absolute -top-6 sm:-top-7 left-1/2 -translate-x-1/2 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-rose-600 via-red-700 to-red-950 shadow-[0_8px_25px_rgba(185,28,28,0.65)] border-2 border-amber-300/60 select-none group z-20 pointer-events-none">
+          <div id="letter-wax-seal" onclick="handleSecretTripleTap(event)" class="absolute -top-6 sm:-top-7 left-1/2 -translate-x-1/2 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-rose-600 via-red-700 to-red-950 shadow-[0_8px_25px_rgba(185,28,28,0.65)] border-2 border-amber-300/60 select-none group z-20 cursor-pointer pointer-events-auto" title="H ❤️ A">
             <!-- Ribbon Tails -->
             <div class="absolute -bottom-2.5 sm:-bottom-3 left-2 w-3 sm:w-3.5 h-5 sm:h-6 bg-red-950 rounded-sm -rotate-12 -z-10 shadow-md"></div>
             <div class="absolute -bottom-2.5 sm:-bottom-3 right-2 w-3 sm:w-3.5 h-5 sm:h-6 bg-red-950 rounded-sm rotate-12 -z-10 shadow-md"></div>
@@ -844,7 +870,7 @@
           </div>
 
           <!-- Edit Letter & Close Modal Buttons -->
-          <button onclick="toggleLetterEditMode()" id="btn-toggle-letter-edit" class="absolute top-2 left-2 sm:top-2.5 sm:left-3 h-11 min-h-[44px] min-w-[44px] px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-rose-600/40 active:bg-rose-600/60 text-rose-200 hover:text-white text-[11px] sm:text-xs font-semibold flex items-center justify-center gap-1.5 border border-white/15 transition active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400/50 z-10" title="Edit Letter Message">
+          <button onclick="toggleLetterEditMode()" id="btn-toggle-letter-edit" class="husband-only-control absolute top-2 left-2 sm:top-2.5 sm:left-3 h-11 min-h-[44px] min-w-[44px] px-2.5 sm:px-3.5 rounded-full bg-white/10 hover:bg-rose-600/40 active:bg-rose-600/60 text-rose-200 hover:text-white text-[11px] sm:text-xs font-semibold flex items-center justify-center gap-1.5 border border-white/15 transition active:scale-95 shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400/50 z-10" title="Edit Letter Message">
             <span>✏️</span>
             <span id="btn-edit-letter-text">Edit Letter</span>
           </button>
@@ -1010,7 +1036,7 @@
         </div>
         <div class="min-w-0">
           <h1 class="text-xs sm:text-sm font-extrabold text-white tracking-tight flex items-center gap-1.5 truncate">
-            <span>Amina & Hamid</span>
+            <span id="header-hamid-trigger" onclick="handleSecretTripleTap(event)" class="cursor-pointer select-none" title="Amina & Hamid">Amina & Hamid</span>
             <span class="hidden sm:inline-block text-[10px] font-mono px-2 py-0.2 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 shrink-0">100% Streak</span>
           </h1>
           <p class="text-[9px] sm:text-[10px] text-purple-300 font-medium truncate" id="current-step-label">Step 1 of 5 • Story Presentation</p>
@@ -1018,7 +1044,7 @@
       </div>
 
       <div class="flex items-center gap-1 sm:gap-1.5 shrink-0">
-        <button onclick="openOnlineSyncModal()" id="header-sync-btn" class="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 border border-cyan-400/40 text-cyan-200 text-[11px] font-semibold transition active:scale-95 shadow-sm shadow-cyan-500/20" title="Sync / Publish Changes Online">
+        <button onclick="openOnlineSyncModal()" id="header-sync-btn" class="husband-only-control flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 border border-cyan-400/40 text-cyan-200 text-[11px] font-semibold transition active:scale-95 shadow-sm shadow-cyan-500/20" title="Sync / Publish Changes Online">
           <span>🌐</span>
           <span class="hidden sm:inline font-medium">Sync Online</span>
         </button>
@@ -1156,7 +1182,7 @@
             </h3>
           </div>
           <div class="shrink-0 flex items-center gap-1.5 self-start sm:self-auto">
-            <button onclick="openTwoCitiesEditor()" aria-label="Edit Two Cities message and dua" class="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[11px] font-semibold flex items-center gap-1 transition active:scale-95 min-h-[36px]">
+            <button onclick="openTwoCitiesEditor()" id="two-cities-edit-btn" aria-label="Edit Two Cities message and dua" class="husband-only-control px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[11px] font-semibold flex items-center gap-1 transition active:scale-95 min-h-[36px]">
               <span>✏️</span> Edit Card
             </button>
             <span class="px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-[10px] font-bold tracking-wide flex items-center gap-1">
@@ -1170,7 +1196,7 @@
         <div class="py-2 sm:py-3 px-1">
           <div class="flex items-center justify-between gap-2 sm:gap-4 relative">
             <!-- Hamid Node (Surat) -->
-            <div class="flex flex-col items-center text-center space-y-1 z-10 shrink-0">
+            <div class="flex flex-col items-center text-center space-y-1 z-10 shrink-0 cursor-pointer select-none" onclick="handleSecretTripleTap(event)" title="Hamid">
               <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-400 p-0.5 shadow-lg shadow-blue-500/30 flex items-center justify-center">
                 <div class="w-full h-full bg-slate-950 rounded-[14px] flex flex-col items-center justify-center">
                   <span class="text-xl">🏙️</span>
@@ -1756,7 +1782,7 @@
             <p class="text-[11px] text-pink-300/80">Frozen in time, etched in our hearts forever</p>
           </div>
           <div class="flex items-center gap-2">
-            <button onclick="openAddMemoryModal()" class="px-3 py-1 rounded-full bg-gradient-to-r from-pink-500/30 to-rose-500/30 hover:from-pink-500/45 hover:to-rose-500/45 border border-pink-500/50 text-pink-200 text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-sm shadow-pink-500/20" title="Add New Photo / Moment">
+            <button onclick="openAddMemoryModal()" id="btn-add-memory" class="husband-only-control px-3 py-1 rounded-full bg-gradient-to-r from-pink-500/30 to-rose-500/30 hover:from-pink-500/45 hover:to-rose-500/45 border border-pink-500/50 text-pink-200 text-xs font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-sm shadow-pink-500/20" title="Add New Photo / Moment">
               <span>➕</span>
               <span>Add Memory</span>
             </button>
@@ -1852,7 +1878,7 @@
 
         <div class="py-3 px-4 rounded-2xl bg-white/5 border border-amber-500/30 max-w-sm mx-auto space-y-2 relative">
           <div class="flex justify-end pb-1">
-            <button onclick="openCertificateEditor()" aria-label="Edit Certificate dedication" class="px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[11px] font-medium flex items-center gap-1 transition active:scale-95 min-h-[36px]">
+            <button onclick="openCertificateEditor()" id="certificate-edit-btn" aria-label="Edit Certificate dedication" class="husband-only-control px-2.5 py-1 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-[11px] font-medium flex items-center gap-1 transition active:scale-95 min-h-[36px]">
               <span>✏️</span> Edit Dedication
             </button>
           </div>
@@ -1865,10 +1891,14 @@
         </div>
 
         <div class="pt-2 flex flex-col gap-2 max-w-xs mx-auto">
-          <button onclick="launchConfetti(); triggerCelebrationChime();" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 text-white text-xs font-extrabold shadow-lg shadow-rose-500/30 active:scale-95 transition flex items-center justify-center gap-1.5">
+          <!-- WhatsApp Share Score Button for Amina -->
+          <a id="whatsapp-quiz-share-btn" href="https://wa.me/?text=Hamid!%20I%20just%20completed%20our%20Love%20Quiz%20on%20my%20birthday%20gift%20website%20and%20scored%205%2F5!%20%F0%9F%92%8D%E2%9D%A4%EF%B8%8F%E2%9C%A8" target="_blank" rel="noopener noreferrer" class="px-6 py-2.5 min-h-[44px] rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-extrabold shadow-lg shadow-emerald-600/30 active:scale-95 transition flex items-center justify-center gap-1.5">
+            <span>📲</span> Send My Quiz Score to Hamid on WhatsApp 💌
+          </a>
+          <button onclick="launchConfetti(); triggerCelebrationChime();" class="px-6 py-2.5 min-h-[44px] rounded-full bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 text-white text-xs font-extrabold shadow-lg shadow-rose-500/30 active:scale-95 transition flex items-center justify-center gap-1.5">
             <span>🎉</span> Shower Soulmate Confetti!
           </button>
-          <button onclick="openLoveLetter()" class="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white/15 text-white text-xs font-semibold border border-white/10 active:scale-95 transition">
+          <button onclick="openLoveLetter()" class="px-6 py-2.5 min-h-[44px] rounded-full bg-white/10 hover:bg-white/15 text-white text-xs font-semibold border border-white/10 active:scale-95 transition">
             💌 Re-read Hamid's Birthday Letter
           </button>
         </div>
@@ -3243,7 +3273,21 @@
     let triviaScore = 0;
     const answeredTrivia = {};
 
+    function restoreSavedQuizState() {
+      try {
+        const savedRaw = localStorage.getItem('amina_quiz_result');
+        if (savedRaw) {
+          const parsed = JSON.parse(savedRaw);
+          if (parsed && parsed.answers) {
+            Object.assign(answeredTrivia, parsed.answers);
+            triviaScore = parsed.score || 0;
+          }
+        }
+      } catch (e) {}
+    }
+
     function renderTriviaGame() {
+      restoreSavedQuizState();
       const tCont = document.getElementById('trivia-questions-container');
       if (!tCont) return;
       tCont.innerHTML = '';
@@ -3253,26 +3297,82 @@
         qCard.id = `trivia-q-${qIdx}`;
         qCard.className = 'glass-card p-4 sm:p-5 space-y-3 border-white/10';
 
-        let optsHtml = q.options.map((opt, optIdx) => `
-          <button onclick="selectTriviaAnswer(${qIdx}, ${optIdx})" id="trivia-opt-${qIdx}-${optIdx}" class="trivia-opt-btn w-full text-left p-3 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-200 font-medium flex items-center justify-between gap-2">
-            <span>${opt}</span>
-            <span id="trivia-icon-${qIdx}-${optIdx}" class="text-sm opacity-0">✓</span>
-          </button>
-        `).join('');
+        const isAnswered = answeredTrivia[qIdx] !== undefined;
+        const selectedOpt = answeredTrivia[qIdx];
+        const isSelectedCorrect = (selectedOpt === q.correct_index);
+
+        let optsHtml = q.options.map((opt, optIdx) => {
+          let btnClasses = 'trivia-opt-btn w-full text-left p-3 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-200 font-medium flex items-center justify-between gap-2';
+          let iconText = '✓';
+          let iconClasses = 'text-sm opacity-0';
+
+          if (isAnswered) {
+            btnClasses += ' pointer-events-none cursor-not-allowed';
+            if (optIdx === q.correct_index) {
+              btnClasses = btnClasses.replace('bg-white/5 border-white/10 text-slate-200', 'bg-emerald-500/20 border-emerald-500/50 text-emerald-200');
+              iconClasses = 'text-sm text-emerald-400';
+            } else if (optIdx === selectedOpt && !isSelectedCorrect) {
+              btnClasses = btnClasses.replace('bg-white/5 border-white/10 text-slate-200', 'bg-rose-500/20 border-rose-500/50 text-rose-200');
+              iconText = '✗';
+              iconClasses = 'text-sm text-rose-400';
+            }
+          }
+
+          return `
+            <button onclick="selectTriviaAnswer(${qIdx}, ${optIdx})" id="trivia-opt-${qIdx}-${optIdx}" ${isAnswered ? 'disabled' : ''} class="${btnClasses}">
+              <span>${opt}</span>
+              <span id="trivia-icon-${qIdx}-${optIdx}" class="${iconClasses}">${iconText}</span>
+            </button>
+          `;
+        }).join('');
+
+        let fbClasses = 'hidden p-3 rounded-xl text-xs font-medium leading-relaxed';
+        let fbHtml = '';
+        if (isAnswered) {
+          if (isSelectedCorrect) {
+            fbClasses = 'p-3 rounded-xl text-xs font-medium leading-relaxed bg-emerald-500/15 border border-emerald-500/30 text-emerald-200';
+            fbHtml = `<strong>✨ Perfect!</strong> ${q.feedback}`;
+          } else {
+            fbClasses = 'p-3 rounded-xl text-xs font-medium leading-relaxed bg-rose-500/15 border border-rose-500/30 text-rose-200';
+            fbHtml = `<strong>❤️ Almost!</strong> ${q.feedback}`;
+          }
+        }
 
         qCard.innerHTML = `
           <div class="flex items-center justify-between text-xs">
             <span class="font-bold text-amber-300 uppercase tracking-wider">Question ${qIdx + 1} of 5</span>
-            <span class="text-slate-400 text-[10px]">Tap to answer</span>
+            <span class="text-slate-400 text-[10px]">${isAnswered ? 'Answered (Locked)' : 'Tap to answer'}</span>
           </div>
           <div class="text-sm font-semibold text-white leading-snug">${q.prompt}</div>
           <div class="space-y-2 pt-1">
             ${optsHtml}
           </div>
-          <div id="trivia-feedback-${qIdx}" class="hidden p-3 rounded-xl text-xs font-medium leading-relaxed"></div>
+          <div id="trivia-feedback-${qIdx}" class="${fbClasses}">${fbHtml}</div>
         `;
         tCont.appendChild(qCard);
       });
+
+      const badge = document.getElementById('trivia-score-badge');
+      if (badge) {
+        badge.textContent = `Score: ${triviaScore}/5`;
+      }
+
+      // If all answered, reveal certificate & whatsapp button
+      if (Object.keys(answeredTrivia).length === TRIVIA_DATA.length) {
+        const certCard = document.getElementById('soulmate-compatibility-card');
+        if (certCard) {
+          certCard.classList.remove('hidden');
+        }
+        updateWhatsAppShareLink();
+      }
+    }
+
+    
+    function updateWhatsAppShareLink() {
+      const btn = document.getElementById('whatsapp-quiz-share-btn');
+      if (!btn) return;
+      const msg = `Hamid! I just completed our Love Quiz on my birthday gift website and scored ${triviaScore}/5! 💍❤️✨ Bound by Qubool Hai, destined for eternity!`;
+      btn.href = `https://wa.me/?text=${encodeURIComponent(msg)}`;
     }
 
     function selectTriviaAnswer(qIdx, optIdx) {
@@ -3336,8 +3436,21 @@
         badge.textContent = `Score: ${triviaScore}/5`;
       }
 
+      // Save permanent quiz state to localStorage (No undo, no retry)
+      try {
+        const quizObj = {
+          score: triviaScore,
+          total: TRIVIA_DATA.length,
+          answers: { ...answeredTrivia },
+          timestamp: new Date().toISOString(),
+          dateFormatted: new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })
+        };
+        localStorage.setItem('amina_quiz_result', JSON.stringify(quizObj));
+      } catch (e) {}
+
       // Check if all 5 completed
       if (Object.keys(answeredTrivia).length === TRIVIA_DATA.length) {
+        updateWhatsAppShareLink();
         setTimeout(() => {
           const certCard = document.getElementById('soulmate-compatibility-card');
           if (certCard) {
@@ -3405,7 +3518,7 @@
         const isCustom = Boolean(p.custom_image_url);
 
         const editBtn = document.createElement('button');
-        editBtn.className = 'absolute top-2 right-2 w-7 h-7 rounded-full bg-slate-900/80 hover:bg-pink-600 text-slate-200 hover:text-white text-xs border border-white/20 flex items-center justify-center transition shadow-lg z-10 active:scale-90';
+        editBtn.className = 'husband-only-control memory-edit-btn absolute top-2 right-2 w-7 h-7 rounded-full bg-slate-900/80 hover:bg-pink-600 text-slate-200 hover:text-white text-xs border border-white/20 flex items-center justify-center transition shadow-lg z-10 active:scale-90';
         editBtn.setAttribute('title', 'Edit Photo & Story');
         editBtn.innerHTML = '✏️';
         editBtn.onclick = function(e) {
@@ -3910,7 +4023,10 @@
     }
 
     function prepareHtmlForExport() {
-      let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      // Ensure body in exported HTML does not have 'husband-unlocked' so it is locked by default for Amina
+      const bodyClone = document.body.cloneNode(true);
+      bodyClone.classList.remove('husband-unlocked');
+      let html = '<!DOCTYPE html>\n<html lang="en" class="dark">\n<head>' + document.head.innerHTML + '</head>\n' + bodyClone.outerHTML + '</html>';
 
       // 1. Bake activePolaroidsList directly into POLAROIDS_LIST in HTML source
       try {
@@ -4465,6 +4581,189 @@
       showGiftToast('Reset Certificate to default', '↺');
     }
 
+    
+    // =============================================================
+    // HUSBAND EDIT MODE & PASSCODE CONTROLLER
+    // =============================================================
+    let _secretTapCount = 0;
+    let _secretTapTimer = null;
+
+    function handleSecretTripleTap(e) {
+      if (e && e.stopPropagation) e.stopPropagation();
+      _secretTapCount++;
+      clearTimeout(_secretTapTimer);
+      _secretTapTimer = setTimeout(() => {
+        _secretTapCount = 0;
+      }, 1500);
+
+      if (_secretTapCount >= 3) {
+        _secretTapCount = 0;
+        if (isHusbandUnlocked()) {
+          openHusbandDashboard();
+        } else {
+          openHusbandUnlockModal();
+        }
+      }
+    }
+
+    function isHusbandUnlocked() {
+      return localStorage.getItem('amina_husband_mode') === 'true';
+    }
+
+    function getHusbandPasscode() {
+      return localStorage.getItem('amina_husband_password') || '03072026';
+    }
+
+    function openHusbandUnlockModal() {
+      const modal = document.getElementById('husband-unlock-modal');
+      const input = document.getElementById('husband-passcode-input');
+      const err = document.getElementById('husband-unlock-error');
+      if (err) err.classList.add('hidden');
+      if (input) input.value = '';
+      if (modal) modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => { if (input) input.focus(); }, 150);
+    }
+
+    function closeHusbandUnlockModal(e) {
+      if (e && e.target && e.target.closest && e.target.closest('.rounded-3xl') && !e.target.closest('button[onclick*="closeHusbandUnlockModal"]')) return;
+      const modal = document.getElementById('husband-unlock-modal');
+      if (modal) modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function submitHusbandUnlock() {
+      const input = document.getElementById('husband-passcode-input');
+      const err = document.getElementById('husband-unlock-error');
+      const entered = input ? input.value.trim() : '';
+
+      if (entered === getHusbandPasscode()) {
+        localStorage.setItem('amina_husband_mode', 'true');
+        document.body.classList.add('husband-unlocked');
+        closeHusbandUnlockModal();
+        showGiftToast('🔓 Husband Mode Unlocked!', '✨');
+        setTimeout(() => {
+          openHusbandDashboard();
+        }, 400);
+      } else {
+        if (err) {
+          err.textContent = 'Incorrect passcode. Please try again.';
+          err.classList.remove('hidden');
+        }
+      }
+    }
+
+    function lockHusbandMode() {
+      localStorage.setItem('amina_husband_mode', 'false');
+      document.body.classList.remove('husband-unlocked');
+      closeHusbandDashboard();
+      showGiftToast('🔒 Husband Edit Mode Locked', '🔒');
+    }
+
+    function openHusbandDashboard() {
+      const modal = document.getElementById('husband-dashboard-modal');
+      renderQuizResultsInDashboard();
+      if (modal) modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeHusbandDashboard(e) {
+      if (e && e.target && e.target.closest && e.target.closest('.rounded-3xl') && !e.target.closest('button[onclick*="closeHusbandDashboard"]')) return;
+      const modal = document.getElementById('husband-dashboard-modal');
+      if (modal) modal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function changeHusbandPasscode() {
+      const input = document.getElementById('dash-new-passcode-input');
+      const newPin = input ? input.value.trim() : '';
+      if (!newPin || newPin.length < 4) {
+        showGiftToast('Passcode must be at least 4 characters', '⚠️');
+        return;
+      }
+      localStorage.setItem('amina_husband_password', newPin);
+      if (input) input.value = '';
+      showGiftToast('Passcode updated successfully!', '🔑');
+    }
+
+    function renderQuizResultsInDashboard() {
+      const badge = document.getElementById('dash-quiz-status-badge');
+      const container = document.getElementById('dash-quiz-results-content');
+      if (!container) return;
+
+      const raw = localStorage.getItem('amina_quiz_result');
+      if (!raw) {
+        if (badge) {
+          badge.textContent = 'Not Taken Yet';
+          badge.className = 'px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-slate-500/20 text-slate-300 border border-slate-500/30';
+        }
+        container.innerHTML = `
+          <p class="text-xs text-slate-400 italic py-2">
+            Amina hasn't completed the Love Quiz yet on this device. Once she answers the 5 questions, her answers and score will be permanently recorded here.
+          </p>
+        `;
+        return;
+      }
+
+      try {
+        const res = JSON.parse(raw);
+        if (badge) {
+          badge.textContent = `Score: ${res.score} / ${res.total || 5}`;
+          badge.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+        }
+
+        let breakdownHtml = `
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-white/10 space-y-1.5 mb-2">
+            <div class="flex justify-between text-[11px]">
+              <span class="text-slate-400">Completed:</span>
+              <span class="text-amber-200 font-mono">${res.dateFormatted || res.timestamp || 'Recorded'}</span>
+            </div>
+            <div class="flex justify-between text-[11px]">
+              <span class="text-slate-400">Compatibility:</span>
+              <span class="text-emerald-300 font-bold">${res.score === 5 ? '100% Perfect Match ❤️' : `${Math.round((res.score / (res.total || 5)) * 100)}% Match`}</span>
+            </div>
+          </div>
+          <div class="space-y-2">
+        `;
+
+        TRIVIA_DATA.forEach((q, idx) => {
+          const chosenIdx = res.answers ? res.answers[idx] : undefined;
+          const isCorrect = chosenIdx === q.correct_index;
+          const chosenText = chosenIdx !== undefined && q.options[chosenIdx] ? q.options[chosenIdx] : 'Unanswered';
+          const correctText = q.options[q.correct_index];
+
+          breakdownHtml += `
+            <div class="p-2.5 rounded-xl ${isCorrect ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-rose-500/10 border border-rose-500/20'} space-y-1">
+              <div class="flex items-start justify-between gap-1 text-[11px] font-semibold text-white">
+                <span>Q${idx + 1}: ${q.prompt}</span>
+                <span class="${isCorrect ? 'text-emerald-400' : 'text-rose-400'} font-bold shrink-0">${isCorrect ? '✓ Correct' : '✗ Mistake'}</span>
+              </div>
+              <div class="text-[10px] space-y-0.5">
+                <div><span class="text-slate-400">Amina chose:</span> <strong class="${isCorrect ? 'text-emerald-300' : 'text-rose-300'}">${chosenText}</strong></div>
+                ${!isCorrect ? `<div><span class="text-slate-400">Correct was:</span> <strong class="text-emerald-300">${correctText}</strong></div>` : ''}
+              </div>
+            </div>
+          `;
+        });
+
+        breakdownHtml += '</div>';
+        container.innerHTML = breakdownHtml;
+
+      } catch (e) {
+        container.innerHTML = `<p class="text-xs text-rose-400">Error reading quiz records: ${e.message}</p>`;
+      }
+    }
+
+    function resetQuizStateForTesting() {
+      if (!confirm('Reset quiz answers so it can be played again?')) return;
+      localStorage.removeItem('amina_quiz_result');
+      triviaScore = 0;
+      for (const k in answeredTrivia) delete answeredTrivia[k];
+      renderTriviaGame();
+      renderQuizResultsInDashboard();
+      showGiftToast('Quiz reset for replay!', '↺');
+    }
+
     function showGiftToast(msg, icon) {
       const toast = document.getElementById('gift-toast-notification');
       if (!toast) return;
@@ -4493,6 +4792,13 @@
 
     // Call initializers on load
     document.addEventListener('DOMContentLoaded', () => {
+      // Check Husband Mode state
+      if (isHusbandUnlocked()) {
+        document.body.classList.add('husband-unlocked');
+      } else {
+        document.body.classList.remove('husband-unlocked');
+      }
+
       loadSavedLetter();
       applyTwoCitiesToDisplay(getStoredTwoCities());
       applyCertificateToDisplay(getStoredCertificate());
@@ -4802,6 +5108,144 @@
             💾 Save Changes
           </button>
         </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================= -->
+  <!-- HUSBAND UNLOCKED FLOATING INDICATOR PILL                      -->
+  <!-- ============================================================= -->
+  <div id="husband-unlocked-floating-pill" class="items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/90 backdrop-blur-md border border-pink-500/40 shadow-xl shadow-pink-500/20 text-white text-xs font-semibold select-none">
+    <span class="text-pink-400">🔓 Edit Mode</span>
+    <button onclick="openHusbandDashboard()" class="px-2 py-0.5 rounded-full bg-white/10 hover:bg-white/20 text-[11px] text-pink-200 transition">
+      📊 Results & Hub
+    </button>
+    <button onclick="lockHusbandMode()" class="px-2 py-0.5 rounded-full bg-rose-600/80 hover:bg-rose-600 text-[11px] text-white transition">
+      🔒 Lock
+    </button>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- HUSBAND PASSCODE UNLOCK MODAL                                 -->
+  <!-- ============================================================= -->
+  <div id="husband-unlock-modal" class="fixed inset-0 z-[99999] bg-slate-950/95 backdrop-blur-xl items-center justify-center p-4 transition-all duration-300" style="display: none;" onclick="closeHusbandUnlockModal(event)">
+    <div class="relative max-w-sm w-full rounded-3xl bg-slate-900 border border-white/20 shadow-2xl overflow-hidden p-6 space-y-4" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between pb-2 border-b border-white/10">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">🔐</span>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-white">Husband Secret Access</h3>
+            <p class="text-[10px] text-slate-400">Enter passcode to unlock edit mode</p>
+          </div>
+        </div>
+        <button onclick="closeHusbandUnlockModal()" aria-label="Close modal" class="w-9 h-9 min-w-[36px] min-h-[36px] rounded-full bg-slate-950/80 hover:bg-rose-600 text-white flex items-center justify-center text-xs font-bold border border-white/20 transition active:scale-95">
+          ✕
+        </button>
+      </div>
+
+      <div class="space-y-3 pt-1">
+        <div>
+          <label class="block text-[11px] font-medium text-slate-300 mb-1">Passcode (Default: 03072026)</label>
+          <input id="husband-passcode-input" type="password" placeholder="Enter passcode" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-white/15 text-white text-sm tracking-wider focus:border-pink-500 focus:outline-none" onkeydown="if(event.key==='Enter') submitHusbandUnlock()">
+        </div>
+        <div id="husband-unlock-error" class="hidden text-[11px] text-rose-400 font-medium"></div>
+      </div>
+
+      <div class="pt-2 flex items-center gap-2">
+        <button onclick="closeHusbandUnlockModal()" class="flex-1 py-2.5 min-h-[44px] rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-medium border border-white/10 transition">
+          Cancel
+        </button>
+        <button onclick="submitHusbandUnlock()" class="flex-1 py-2.5 min-h-[44px] rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white text-xs font-bold shadow-lg shadow-pink-500/30 transition active:scale-95">
+          🔓 Unlock
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- HUSBAND DASHBOARD MODAL (QUIZ RESULTS & HUB)                   -->
+  <!-- ============================================================= -->
+  <div id="husband-dashboard-modal" class="fixed inset-0 z-[99999] bg-slate-950/95 backdrop-blur-xl items-center justify-center p-3 sm:p-6 transition-all duration-300" style="display: none;" onclick="closeHusbandDashboard(event)">
+    <div class="relative max-w-lg w-full max-h-[90vh] flex flex-col rounded-3xl bg-slate-900 border border-white/20 shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+      <!-- Header -->
+      <div class="p-4 sm:p-5 bg-gradient-to-r from-pink-900/40 via-purple-900/40 to-slate-900 border-b border-white/10 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">💫</span>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-white">Husband Control Center</h3>
+            <p class="text-[11px] text-pink-200">Amina's Quiz Results & In-App Controls</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="lockHusbandMode()" class="px-2.5 py-1 rounded-full bg-rose-600 hover:bg-rose-500 text-white text-[11px] font-bold transition flex items-center gap-1 shadow">
+            <span>🔒</span> Lock Mode
+          </button>
+          <button onclick="closeHusbandDashboard()" aria-label="Close dashboard" class="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full bg-slate-950/80 hover:bg-rose-600 text-white flex items-center justify-center text-xs font-bold border border-white/20 transition active:scale-95">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable Body -->
+      <div class="p-4 sm:p-5 overflow-y-auto space-y-5 text-xs">
+        
+        <!-- SECTION 1: AMINA'S QUIZ RESULTS -->
+        <div class="p-4 rounded-2xl bg-white/5 border border-amber-500/30 space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">📊</span>
+              <span class="font-bold text-amber-300 text-xs sm:text-sm">Amina's Love Quiz Results</span>
+            </div>
+            <span id="dash-quiz-status-badge" class="px-2 py-0.5 rounded-full text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              Checking...
+            </span>
+          </div>
+
+          <div id="dash-quiz-results-content" class="space-y-2 text-slate-300">
+            <!-- Injected dynamically -->
+          </div>
+        </div>
+
+        <!-- SECTION 2: PASSCODE SETTINGS -->
+        <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+          <div class="flex items-center gap-2 font-bold text-white text-xs">
+            <span>🔑</span> Passcode Management
+          </div>
+          <div class="flex items-center gap-2">
+            <input id="dash-new-passcode-input" type="password" placeholder="New passcode" class="flex-1 px-3 py-2 rounded-xl bg-slate-950 border border-white/15 text-white text-xs focus:border-pink-500 focus:outline-none">
+            <button onclick="changeHusbandPasscode()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-semibold border border-white/15 transition shrink-0 min-h-[38px]">
+              Update Passcode
+            </button>
+          </div>
+          <p class="text-[10px] text-slate-400">Default passcode is <strong class="text-amber-300">03072026</strong> (Nikah Date).</p>
+        </div>
+
+        <!-- SECTION 3: CLOUD ACTIONS -->
+        <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+          <div class="flex items-center gap-2 font-bold text-white text-xs">
+            <span>🌐</span> Quick Cloud Actions
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="closeHusbandDashboard(); openOnlineSyncModal();" class="p-3 rounded-xl bg-gradient-to-r from-cyan-600/30 to-blue-600/30 hover:from-cyan-600/50 hover:to-blue-600/50 border border-cyan-400/40 text-cyan-200 text-xs font-semibold text-center transition">
+              🚀 1-Tap Sync to GitHub Pages
+            </button>
+            <button onclick="downloadUpdatedGiftHtml()" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-slate-200 text-xs font-semibold text-center transition">
+              💾 Download Backup HTML
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="p-3 sm:p-4 bg-slate-950 border-t border-white/10 flex items-center justify-between">
+        <button onclick="resetQuizStateForTesting()" class="text-[11px] text-rose-400/80 hover:text-rose-400 underline">
+          ↺ Reset Quiz Answers (Testing Only)
+        </button>
+        <button onclick="closeHusbandDashboard()" class="px-4 py-2 min-h-[44px] rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold border border-white/15 transition">
+          Done
+        </button>
       </div>
     </div>
   </div>
