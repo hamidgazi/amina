@@ -156,12 +156,18 @@ It commemorates her **23rd Birthday (17 September 2026)**, analyzes **12,980 rea
 ---
 
 ### Step 6: 💖 Our Love Trivia & 100% Soulmate Certificate
-- **Interactive 5-Question Love Trivia**:
-  1. *Who sent the very first message on July 06?* (Amina!)
-  2. *What is our lightning-fast median reply time?* (12 Seconds!)
-  3. *What was our absolute record day with 857 messages?* (August 17!)
-  4. *What was by far our mutual favorite emoji?* (👍 Thumbs Up!)
-  5. *What sacred day was our Nikah solemnized?* (03 July 2026!)
+- **Interactive 5-Question Love Trivia (Challenging & True to Our Story)**:
+  1. **Q1 (The Icebreaker)**: *On 06 July 2026 at 00:09 AM, who broke the ice on Instagram and what was the very first word sent?*
+     - **Answer**: **Option B** — *Amina Chamadiya — 'suno'* ✨ (Amina took the initiative right after Nikah with her iconic single word!)
+  2. **Q2 (The Record Chat Day)**: *What was our all-time record chat day when we sent an astonishing 857 messages in 24 hours?*
+     - **Answer**: **Option D** — *Monday, August 17, 2026* 🔥 (Close distractors across mid-August make this a real test!)
+  3. **Q3 (Midnight Peak Hour)**: *Over 50.6% of our chat (6,571 messages) happened late at night. Which exact 1-hour window had our highest message volume (2,652 msgs)?*
+     - **Answer**: **Option A** — *12:00 AM – 1:00 AM (Midnight Hour)* 🌙 (Our true soulmate hour under the quiet stars!)
+  4. **Q4 (The Reaction Champion)**: *Out of 2,187 total emoji reactions in our chat, what was our mutual #1 most reacted emoji (used over 1,000 times)?*
+     - **Answer**: **Option C** — *👍 Thumbs Up* (1,001 uses! A fun, tricky question since most people would instinctively guess ❤️ Red Heart!)
+  5. **Q5 (Sacred Milestones)**: *Our love story is anchored by monumental milestones in 2026. On which exact date was our sacred Baat Pakki celebrated?*
+     - **Answer**: **Option B** — *Sunday, 14 April 2026* 💍 (Distinguished from Engagement on 27 April and Nikah on 03 July!)
+  - **Balanced, Non-Predictable Answers**: The correct options are spread across **B, D, A, C, B** (eliminating the old issue where every answer was Option A).
   - Answering triggers green celebratory sparkle animations and cheering feedback!
 - **🔒 Permanent Quiz Lock (No Undo / No Retrying)**:
   - Once Amina taps an answer, it is **locked permanently**! There is no undo or changing answers, even if she refreshes the page. This preserves the genuine excitement and honesty of the quiz.
