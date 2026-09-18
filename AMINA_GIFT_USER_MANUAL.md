@@ -3,7 +3,8 @@
 
 > **Occasion**: Amina's 23rd Birthday — 17 September 2026  
 > **Sacred Milestone**: Our Nikah — 03 July 2026  
-> **Live Website URL**: [https://hamidgazi.github.io/amina/](https://hamidgazi.github.io/amina/)  
+> **Version 1.0 Link (Original • 12,980 Messages)**: [https://hamidgazi.github.io/amina/](https://hamidgazi.github.io/amina/)  
+> **Version 2.0 Link (Extended • 18,589 Messages)**: [https://hamidgazi.github.io/amina/v2.html](https://hamidgazi.github.io/amina/v2.html)  
 > **GitHub Repository**: [https://github.com/hamidgazi/amina](https://github.com/hamidgazi/amina)
 
 ---
@@ -332,6 +333,22 @@ When sending this gift to Amina on 17 September, here is a romantic Hinglish mes
 > *I hope tumhe ye pasand aaye. Allah Ta'ala hamare is rishte ko hamesha salamat rakhe aur jaldi hi hume ek aashiyane me ek kar de. Ameen! Love you hamesha, Your Husband Hamid ❤️"*
 
 ---
-
-### 🎁 Ready for 17 September 2026
-Everything in this application is verified, responsive, respectful, and ready to give Amina an unforgettable birthday memory she will treasure forever.
+ 
+ ## 7. Version 2.0 (Extended Chat Analysis)
+ 
+ ### 🌟 What's New in Version 2.0?
+ Version 2.0 lives on a dedicated standalone page: **[https://hamidgazi.github.io/amina/v2.html](https://hamidgazi.github.io/amina/v2.html)** while keeping Version 1.0 completely untouched on the original link.
+ 
+ - **Expanded Dataset**: Covers all **18,589 messages** across **73 unbroken days** (06 July – 16 September 2026, right up to birthday eve).
+ - **Soulmate Balance**: Hamid (**9,301 msgs / 50.03%**) vs Amina (**9,288 msgs / 49.97%**) — an astonishing 13-message difference!
+ - **Monthly Velocity**: July (113.5 msgs/day) → August (338.4 msgs/day) → **September (366.0 msgs/day — record-high peak month!)**.
+ - **Midnight Intimacy**: **8,730 total midnight messages** (46.96%), with peak hour 12:00 AM – 1:00 AM containing **3,762 messages**.
+ - **Reactions**: **3,368 total reactions**, Amina reigning as Reaction Queen with **2,604 reactions (77.3%)**; top reaction is **`👍` (1,569)** followed by **`❤️` (667)**.
+ - **Sweet Words**: *Yaad* (96), *Love* (48), *Jaan* (40), *Pyaar* (39).
+ - **Challenging Love Quiz 2.0**: All 5 questions updated with subtle facts from the 18,589-message dataset and distributed answer positions (**B, D, A, C, B**).
+ - **All Core Features Retained**: Husband Mode, Secret Triple-Tap (`03072026`), Private Quiz Dashboard, Two Cities card, Lightbox viewer, and gentle floating rose petals with strictly zero audio.
+ 
+ ---
+ 
+ ### 🎁 Ready for 17 September 2026
+ Everything in both Version 1.0 and Version 2.0 is verified, responsive, respectful, and ready to give Amina an unforgettable birthday memory she will treasure forever.
