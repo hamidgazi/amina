@@ -207,9 +207,27 @@ Third-party Android keyboards do not read Gboard's proprietary `.zip` personal d
    - Open **Settings** $\rightarrow$ **General management** $\rightarrow$ **Samsung Keyboard settings** $\rightarrow$ **More typing options** $\rightarrow$ **Text shortcuts**.
    - Tap **`+`** (Add). Open `gboard_hinglish_shortcuts.csv` in Excel or Google Sheets, and enter the **Shortcut** (e.g. `muje`) and the **Expanded phrase** (e.g. `mujhe`).
    - Tap **Add**.
-2. **Microsoft SwiftKey**:
-   - Open **SwiftKey Settings** $\rightarrow$ **Rich input** $\rightarrow$ **Clipboard** $\rightarrow$ **Add a new clip**.
-   - Paste the replacement phrase and assign the casual word as the shortcut trigger.
+2. **Microsoft SwiftKey (Android & iOS)**:
+   Microsoft SwiftKey has three powerful mechanisms for Hinglish autocorrect:
+   - **Mechanism A: Custom Text Shortcuts (via Clipboard Engine)**:
+     1. Tap any text area to bring up your SwiftKey keyboard.
+     2. Tap the **Toolbar** icon (the small chevron `>` or `+` on the top-left of the keyboard to show the icon bar).
+     3. Tap the **Clipboard icon (📋)**.
+     4. Tap **Manage** (or the **Pencil icon** / **Edit** button in the clipboard tray).
+     5. Tap **`+ Add a new clip`** (or open **SwiftKey App** $\rightarrow$ **Rich input** $\rightarrow$ **Clipboard** $\rightarrow$ **Add a new clip**).
+     6. In the **Clip content** field, enter the correct standard word (e.g., `mujhe`).
+     7. In the **Shortcut** field, enter your casual typo (e.g., `muje`).
+     8. Tap **Save**. Now whenever you type `muje`, SwiftKey will automatically show `mujhe` in your prediction strip!
+   - **Mechanism B: Enable Built-in "Hindi (Latin)" / "Hinglish" Language Pack**:
+     1. Open the **SwiftKey App** on your phone $\rightarrow$ tap **Languages**.
+     2. Scroll down or search for **"Hindi (Latin)"** or **"Hinglish"** (Roman script).
+     3. Download and toggle it **ON** alongside English.
+     4. *Result*: SwiftKey's neural network will natively recognize Romanized Hindustani vocabulary (`mujhe`, `tujhe`, `maine`, `baatein`, `kuchh`, `zyada`, `loonga`, `doonga`) and will autocorrect phonetically as you type without requiring manual clips!
+   - **Mechanism C: Unlearning Old Misspelled Predictions (Critical for SwiftKey)**:
+     - If you have texted `muje`, `hu`, or `mene` hundreds of times in the past, SwiftKey has memorized those typos in your dynamic language model.
+     - To remove them: Next time you type `muje` and see `muje` suggested in the candidate bar, **Long-press** the word on the prediction bar.
+     - A prompt will pop up: *"Do not predict 'muje' again?"* $\rightarrow$ tap **OK / Remove**.
+     - Now type `mujhe` once and tap it. SwiftKey will prioritize the correct spelling going forward.
 3. **Keyboards Lacking Batch Import APIs (e.g. Fleksy, Typewise, OpenBoard)**:
    - Minimalist or privacy-focused keyboards do not provide automated file import APIs for personal dictionaries.
    - For these keyboards, open `gboard_hinglish_shortcuts.csv` side-by-side or on your computer as a reference sheet.
