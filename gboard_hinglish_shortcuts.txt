@@ -1,0 +1,28 @@
+# Gboard Personal Dictionary Import File
+# Format: Shortcut<TAB>Replacement<TAB>Language
+muje	mujhe	hi
+hu	hoon	hi
+kuch	kuchh	hi
+tuje	tujhe	hi
+mene	maine	hi
+eak	ek	hi
+zayada	zyada	hi
+baate	baatein	hi
+kaha	kahan	hi
+lunga	loonga	hi
+karu	karoon	hi
+badme	baad mein	hi
+dunga	doonga	hi
+kyu	kyun	hi
+thoda	thoda	hi
+samaj	samajh	hi
+dusre	doosre	hi
+jaunga	jaoonga	hi
+tune	tu ne	hi
+batana	bataana	hi
+ha	haan	hi
+shadi	shaadi	hi
+haa	haan	hi
+kese	kaise	hi
+samja	samjha	hi
+acha	accha	hi
