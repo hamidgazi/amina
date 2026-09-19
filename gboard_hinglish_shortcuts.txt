@@ -1,4 +1,4 @@
-# Gboard Personal Dictionary Import File
+# Gboard Dictionary version:1
 # Format: Shortcut<TAB>Replacement<TAB>Language
 muje	mujhe	hi
 hu	hoon	hi
