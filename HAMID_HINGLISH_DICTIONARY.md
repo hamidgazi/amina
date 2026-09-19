@@ -23,6 +23,7 @@
    - [5.1 Android Setup (Google Gboard & Third-Party Keyboards)](#51-android-setup-google-gboard)
    - [5.2 iPhone Setup (Apple iOS Text Replacement & iCloud Sync)](#52-iphone-setup-apple-ios-text-replacement)
    - [5.3 Keyboard Case Sensitivity & Polymorphic Capitalization Mechanics](#53-keyboard-case-sensitivity--polymorphic-capitalization-mechanics)
+   - [5.4 Windows PC Setup (AutoHotkey & Native Windows 11 Suggestions)](#54-windows-pc-setup-autohotkey--native-windows-11-suggestions)
 
 ---
 
@@ -278,6 +279,28 @@ A frequent question when setting up mobile shortcuts is whether separate upperca
    - **Sentence start (Title Case)**: Typing `Muje` $\rightarrow$ the keyboard's auto-capitalization engine recognizes the sentence boundary and automatically expands to **`Mujhe`**.
    - **Intense emphasis (ALL CAPS)**: Typing `MUJE` $\rightarrow$ automatically expands to **`MUJHE`**.
 3. **Zero Redundancy**: Because lowercase triggers dynamically preserve the user's typing case, you do not need duplicate entries or complex case rules.
+
+---
+
+### 💻 5.4 Windows PC Setup (AutoHotkey & Native Windows 11 Suggestions)
+For typing on Windows PC (WhatsApp Web, Instagram Web, browsers, Telegram, Office, and Notepad):
+
+#### Method 1: Instant System-Wide Autocorrect via AutoHotkey (`hamid_hinglish_windows.ahk`)
+We have created a ready-to-run AutoHotkey script (`hamid_hinglish_windows.ahk`) in the project directory containing all 26 tracked Hinglish corrections:
+1. **Download / Install AutoHotkey**: If you don't already have it, install the free utility from [AutoHotkey.com](https://www.autohotkey.com/).
+2. **Double-click to Run**: Simply double-click [`hamid_hinglish_windows.ahk`](file:///c:/Users/Shop%20PC%202/OneDrive/Desktop/Hamid%20Gazi%20Desktop/Chat%20Project/hamid_hinglish_windows.ahk).
+3. **Instant Action Everywhere**: A small green 'H' icon will appear in your Windows System Tray (near the clock). Now, whenever you type `muje ` in Chrome, WhatsApp Web, Edge, or Word, it will instantly expand to `mujhe `!
+4. **Auto-Start on Boot (Optional)**: Press `Win + R`, type `shell:startup`, and place a shortcut to `hamid_hinglish_windows.ahk` in that folder so it starts automatically with Windows.
+5. **Exit Anytime**: Press `Ctrl + Esc` or right-click the green 'H' tray icon and select **Exit**.
+
+#### Method 2: Windows 10/11 Hardware Keyboard Text Suggestions
+Windows 10 and 11 have built-in multilingual text suggestions for physical keyboards:
+1. Open Windows **Settings** (press `Win + I`).
+2. Go to **Time & Language** $\rightarrow$ **Typing**.
+3. Toggle ON: **"Show text suggestions when typing on the physical keyboard"**.
+4. Toggle ON: **"Multilingual text suggestions"**.
+5. Go to **Time & Language** $\rightarrow$ **Language & region** $\rightarrow$ tap **Add a language** $\rightarrow$ select **"Hindi (Latin)"** (Roman script).
+6. *Result*: As you type on your physical laptop or desktop keyboard, a small floating suggestion strip will appear right above your cursor offering standard Romanized suggestions!
 
 ---
 
