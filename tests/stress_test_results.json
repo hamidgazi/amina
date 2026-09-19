@@ -1,0 +1,211 @@
+[
+  {
+    "test": "Rapid Double-Click Protection",
+    "category": "Gift Box Clicks",
+    "status": "PASS",
+    "details": "Verify double-click does not corrupt state or trigger duplicate transitions",
+    "evidence": {
+      "classes_t0": "is-opening",
+      "classes_final": "is-revealed",
+      "letter_display": "block",
+      "box_display": "none",
+      "has_unwrapped": true,
+      "errors": []
+    }
+  },
+  {
+    "test": "20x Burst Click Stress",
+    "category": "Gift Box Clicks",
+    "status": "PASS",
+    "details": "Verify 20 rapid programmatic clicks in tight loop do not throw exceptions or corrupt state",
+    "evidence": {
+      "burst_res": {
+        "calls": 20,
+        "classes": "is-opening",
+        "error": null
+      },
+      "classes_final": "is-revealed",
+      "letter_display": "block",
+      "errors": []
+    }
+  },
+  {
+    "test": "Mid-Transition Click Rejection",
+    "category": "Gift Box Clicks",
+    "status": "PASS",
+    "details": "Verify click during active 1300ms transition is safely ignored",
+    "evidence": {
+      "classes_final": "is-revealed",
+      "box_display": "none",
+      "letter_display": "block",
+      "errors": []
+    }
+  },
+  {
+    "test": "Standard Replay Reset",
+    "category": "Replay Functionality",
+    "status": "PASS",
+    "details": "Verify replayGiftUnwrap() smoothly restores box stage and hides letter",
+    "evidence": {
+      "box_display": "flex",
+      "letter_display": "none",
+      "classes": "state-idle",
+      "is_floating": true,
+      "errors": []
+    }
+  },
+  {
+    "test": "15x Rapid Replay Burst",
+    "category": "Replay Functionality",
+    "status": "PASS",
+    "details": "Verify rapid back-to-back replay calls settle cleanly into box stage",
+    "evidence": {
+      "error": null,
+      "box_display": "flex",
+      "letter_display": "none",
+      "errors": []
+    }
+  },
+  {
+    "test": "Replay During Active Unwrap Race Condition",
+    "category": "Replay Functionality",
+    "status": "PASS",
+    "details": "Checks if lingering setTimeout(..., 1300) from unwrapGift hijacks replay state",
+    "evidence": {
+      "box_disp_t600": "flex",
+      "box_disp_t1600": "flex",
+      "letter_disp_t1600": "none",
+      "classes_t1600": "state-idle",
+      "race_hijacked_by_timer": false
+    }
+  },
+  {
+    "test": "5-Cycle Unwrap-Replay Stability",
+    "category": "Replay Functionality",
+    "status": "PASS",
+    "details": "Verify 5 continuous unwrap-to-replay cycles maintain consistent DOM state",
+    "evidence": {
+      "cycles_log": [
+        {
+          "cycle": 1,
+          "revealed": true,
+          "replayed_to_box": true
+        },
+        {
+          "cycle": 2,
+          "revealed": true,
+          "replayed_to_box": true
+        },
+        {
+          "cycle": 3,
+          "revealed": true,
+          "replayed_to_box": true
+        },
+        {
+          "cycle": 4,
+          "revealed": true,
+          "replayed_to_box": true
+        },
+        {
+          "cycle": 5,
+          "revealed": true,
+          "replayed_to_box": true
+        }
+      ],
+      "errors": []
+    }
+  },
+  {
+    "test": "Programmatic Open/Close API",
+    "category": "Modal Lifecycle",
+    "status": "PASS",
+    "details": "Verify window.openLoveLetter() and window.closeLoveLetter() manage overlay and scroll lock",
+    "evidence": {
+      "close_state": {
+        "classes": "state-idle overlay-hidden",
+        "overflow": ""
+      },
+      "open_state": {
+        "classes": "is-revealed",
+        "display": "block",
+        "overflow": "hidden"
+      }
+    }
+  },
+  {
+    "test": "Keyboard Escape Key Dismissal",
+    "category": "Modal Lifecycle",
+    "status": "PASS",
+    "details": "Verify Escape key press closes the love letter modal and unfreezes body scroll",
+    "evidence": {
+      "classes": "is-revealed overlay-hidden",
+      "body_overflow": ""
+    }
+  },
+  {
+    "test": "Backdrop Click Dismissal",
+    "category": "Modal Lifecycle",
+    "status": "PASS",
+    "details": "Verify clicking backdrop outside letter card closes the modal",
+    "evidence": {
+      "classes_after_backdrop_click": "is-revealed overlay-hidden",
+      "overlay_hidden_present": true
+    }
+  },
+  {
+    "test": "20x Rapid Modal Toggle",
+    "category": "Modal Lifecycle",
+    "status": "PASS",
+    "details": "Verify 20 rapid toggles between openLoveLetter() and closeLoveLetter() execute without error",
+    "evidence": {
+      "res": {
+        "error": null
+      },
+      "final_classes": "is-revealed",
+      "errors": []
+    }
+  },
+  {
+    "test": "Unfold Memories Transition to Milestones",
+    "category": "Chapter Transitions",
+    "status": "PASS",
+    "details": "Verify #btn-unfold-memories closes modal and activates Milestones view and navigation indicators",
+    "evidence": {
+      "overlay_classes": "is-revealed overlay-hidden",
+      "body_overflow": "",
+      "view_milestones_hidden": false,
+      "nav_milestones_active": true,
+      "step_btn_milestones_active": true,
+      "view_story_hidden": true,
+      "view_matchup_hidden": true,
+      "errors": []
+    }
+  },
+  {
+    "test": "window.goToChapter Interface Contract",
+    "category": "Chapter Transitions",
+    "status": "PASS",
+    "details": "Verify window.goToChapter switches views and opens/closes reveal overlay according to PROJECT.md",
+    "evidence": {
+      "results": {
+        "milestones": true,
+        "polaroids": true,
+        "chat": true,
+        "trivia": true,
+        "reveal": true
+      },
+      "errors": []
+    }
+  },
+  {
+    "test": "Audio/Haptic Fallback Safety",
+    "category": "Hardware Fallback",
+    "status": "PASS",
+    "details": "Verify unwrapGift completes smoothly even when AudioContext and navigator.vibrate are unavailable",
+    "evidence": {
+      "classes": "is-revealed",
+      "letter_disp": "block",
+      "errors": []
+    }
+  }
+]
