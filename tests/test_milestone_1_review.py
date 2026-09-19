@@ -12,7 +12,8 @@ class TestMilestone1IndependentReview(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        cls.html_path = os.path.join(base_dir, "Instagram_Chat_Analysis_Amina_Hamid.html")
+        offline_v1 = os.path.join(base_dir, "version_1_offline", "Instagram_Chat_Analysis_Amina_Hamid.html")
+        cls.html_path = offline_v1 if os.path.exists(offline_v1) else os.path.join(base_dir, "Instagram_Chat_Analysis_Amina_Hamid.html")
         with open(cls.html_path, "r", encoding="utf-8") as f:
             cls.content = f.read()
 

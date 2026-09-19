@@ -15,15 +15,16 @@ from typing import Any, Dict, List, Optional, Tuple
 BIRTHDAY_TARGET_DATE = date(2026, 9, 17)
 IST_TZ = timezone(timedelta(hours=5, minutes=30))
 
-# V1 Baseline Preservation Constants
+# V1 Baseline Preservation Constants (Preserved in version_1_offline/)
 V1_EXPECTED_SIZE = 270487
 V1_EXPECTED_SHA256 = "4314E596BA3AC3B0D573DAF7845A08698033A006B63A6AA66ADD137901142D21"
-V1_PRIMARY_FILE = "Instagram_Chat_Analysis_Amina_Hamid.html"
-V1_REPLICA_FILE = "index.html"
+V1_PRIMARY_FILE = os.path.join("version_1_offline", "Instagram_Chat_Analysis_Amina_Hamid.html")
+V1_REPLICA_FILE = os.path.join("version_1_offline", "index.html")
 
-# V2 Standalone Files
+# V2 Standalone & Primary Deployment Files
 V2_PRIMARY_FILE = "Instagram_Chat_Analysis_Amina_Hamid_v2.html"
 V2_REPLICA_FILE = "v2.html"
+V2_MAIN_DEPLOYMENT = "index.html"
 
 # Version 2.0 Extended Chat Metrics (Authoritative Ground Truth)
 CHAT_METRICS_V2 = {

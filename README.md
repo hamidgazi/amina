@@ -2,8 +2,8 @@
 
 > **A Sacred Tribute Celebrating 23 Years of Grace & Love**  
 > **Couple**: Hamid Gazi & Amina Chamadiya (Nikah: 03 July 2026 | Birthday: 17 September 2026)  
-> **Live Web Application (V1.0)**: [https://hamidgazi.github.io/amina/](https://hamidgazi.github.io/amina/)  
-> **Extended Edition (V2.0)**: [https://hamidgazi.github.io/amina/v2.html](https://hamidgazi.github.io/amina/v2.html)  
+> **Primary Live Web Application**: [https://hamidgazi.github.io/amina/](https://hamidgazi.github.io/amina/) *(Now updated to Version 2.0 with all 18,589 messages)*  
+> **Offline Version 1.0 Archive**: Preserved locally in [`version_1_offline/`](file:///c:/Users/Shop%20PC%202/OneDrive/Desktop/Hamid%20Gazi%20Desktop/Chat%20Project/version_1_offline/)  
 
 ---
 
@@ -13,11 +13,17 @@
 Chat Project/
 │
 ├── 🌐 LIVE WEB APPLICATION FILES (GitHub Pages)
-│   ├── index.html                                 # 🎁 Version 1.0 (Frozen initial release, 270 KB)
-│   ├── v2.html                                    # 🎁 Version 2.0 (Extended 18,589 messages, 274 KB)
-│   ├── Instagram_Chat_Analysis_Amina_Hamid.html    # V1.0 Master Source (Byte-identical to index.html)
-│   ├── Instagram_Chat_Analysis_Amina_Hamid_v2.html # V2.0 Master Source (Byte-identical to v2.html)
+│   ├── index.html                                 # 🎁 Version 2.0 (Extended 18,589 messages, 274 KB - Primary live site)
+│   ├── v2.html                                    # 🎁 Version 2.0 Mirror (Byte-identical to index.html)
+│   ├── Instagram_Chat_Analysis_Amina_Hamid.html    # Master Source (Updated to Version 2.0)
+│   ├── Instagram_Chat_Analysis_Amina_Hamid_v2.html # V2.0 Standalone Source (Byte-identical to index.html)
 │   └── AMINA_GIFT_USER_MANUAL.md                  # 📖 Complete Husband Guide & Secret Features Manual
+│
+├── 💾 OFFLINE VERSION 1.0 ARCHIVE
+│   └── version_1_offline/                         # 📁 Permanent offline archive of initial Version 1.0 (270 KB)
+│       ├── index.html                             # Bitwise-verified original release (SHA-256: 4314E596...)
+│       ├── Instagram_Chat_Analysis_Amina_Hamid.html # Original master source
+│       └── README.md                              # Offline usage instructions (double-click to view offline)
 │
 ├── 🚀 DEPLOYMENT & SYNC SCRIPTS
 │   ├── sync_to_github.bat                         # ⚡ 1-Click Git commit & push to GitHub Pages

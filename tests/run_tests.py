@@ -153,10 +153,10 @@ def run_suite(tier_filter=None, verbose=False):
                 print("-" * 50)
         print()
 
-    # Static HTML Audit - Version 1.0
-    v1_html_path = "Instagram_Chat_Analysis_Amina_Hamid.html"
+    # Static HTML Audit - Version 1.0 (Offline Frozen Archive)
+    v1_html_path = oracle_v2.V1_PRIMARY_FILE if os.path.exists(oracle_v2.V1_PRIMARY_FILE) else "Instagram_Chat_Analysis_Amina_Hamid.html"
     print("=" * 80)
-    print("  VERSION 1.0 BASELINE APPLICATION AUDIT")
+    print("  VERSION 1.0 OFFLINE BASELINE APPLICATION AUDIT")
     print("=" * 80)
     if os.path.exists(v1_html_path):
         v1_size_bytes = os.path.getsize(v1_html_path)

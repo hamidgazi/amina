@@ -13,7 +13,8 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-HTML_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Instagram_Chat_Analysis_Amina_Hamid.html'))
+_OFFLINE_V1_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'version_1_offline', 'Instagram_Chat_Analysis_Amina_Hamid.html'))
+HTML_FILE_PATH = _OFFLINE_V1_PATH if os.path.exists(_OFFLINE_V1_PATH) else os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Instagram_Chat_Analysis_Amina_Hamid.html'))
 
 class BaseSeleniumTest(unittest.TestCase):
     @classmethod
